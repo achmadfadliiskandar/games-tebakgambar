@@ -57,7 +57,15 @@ class HomeController extends Controller
     public function start(){
         $rintangangamess = RintanganGame::all();
         $data_terakhir = RintanganGame::latest('id')->first();
+        if (empty($data_terakhir)) {
+        $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
+        return view('pemain.start',compact('rintangangamess','aktifbermain'));
+        } else {
         $getdataterakhir = $data_terakhir->id - 1;
+        $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
+        return view('pemain.start',compact('rintangangamess','aktifbermain','getdataterakhir'));
+        }
+        
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
         return view('pemain.start',compact('rintangangamess','aktifbermain','getdataterakhir'));
     }
