@@ -26,6 +26,9 @@ Route::get('/pemain/tebak-rintangan/{id}',[App\Http\Controllers\HomeController::
 Route::post('/pemain/kirim/jawaban',[App\Http\Controllers\HomeController::class, 'jawab'])->middleware('checkRole:pemain');
 Route::post('/pemain/kirim/jawaban/coba/lagi',[App\Http\Controllers\HomeController::class, 'jawablagi'])->middleware('checkRole:pemain');
 Route::get('/pemain/get/result',[App\Http\Controllers\HomeController::class, 'result'])->middleware('checkRole:pemain');
+Route::get('/pemain/data/profile',[App\Http\Controllers\HomeController::class, 'profile'])->middleware('checkRole:pemain');
+Route::post('/pemain/update/password',[App\Http\Controllers\HomeController::class, 'pemainupdate'])->middleware('checkRole:pemain');
+Route::patch('/pemain/update/data/diri/{getuserlogin}',[App\Http\Controllers\HomeController::class, 'editdd'])->middleware('checkRole:pemain');
 // end pemain
 
 // khusus admin

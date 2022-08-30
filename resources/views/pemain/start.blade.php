@@ -45,7 +45,7 @@
                     </div>
                 </div>
             @else
-            @if ($aktifbermain >= $getdataterakhir)
+            @if ($aktifbermain == $getdataterakhir)
             <div class="alert alert-success my-3">Selamat Anda Berhasil Menamatkan Games Ini</div>
             @else
             <div class="alert alert-info my-3">Selamat Bermain Sampai Tamat</div>

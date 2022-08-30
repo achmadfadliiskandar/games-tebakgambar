@@ -61,7 +61,7 @@ class HomeController extends Controller
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
         return view('pemain.start',compact('rintangangamess','aktifbermain'));
         } else {
-        $getdataterakhir = $data_terakhir->id - 1;
+        $getdataterakhir = $data_terakhir->required + 1;
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
         return view('pemain.start',compact('rintangangamess','aktifbermain','getdataterakhir'));
         }
@@ -130,6 +130,38 @@ class HomeController extends Controller
         $seluruhpemain = PlayGame::count();
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
         return view('pemain.result',compact('playgames','seluruhpemain','playgamesfast','playgamesslow','aktifbermain'));
+    }
+    public function profile(){
+        $playerplay = PlayGame::where('user_id',Auth::user()->id)->get();
+        $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
+        $playgamesfast = PlayGame::where('user_id',Auth::user()->id)->min('waktu_menjawab');
+        $playgamesslow = PlayGame::where('user_id',Auth::user()->id)->max('waktu_menjawab');
+        $getuserlogin = Auth::user()->id;
+        return view('pemain.profile',compact('playerplay','aktifbermain','playgamesfast','playgamesslow','getuserlogin'));
+    }
+    public function pemainupdate(Request $request){
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required'
+        ]);
+        // menyamakan password yang lama dengan yang baru
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with('error','password tidak sama');
+        }
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+        return back()->with('success','password berhasil di ubah');
+    }
+    public function editdd(Request $request,$id){
+        // dd("masuk pak eko",$id);
+        $playerplay = User::find($id);
+        $playerplay->name = $request->name;
+        $playerplay->email = $request->email;
+        $playerplay->role = $request->role;
+        $playerplay->email_verified_at = date("d-M-Y H:i:s");
+        $playerplay->save();
+        return back()->with('success','data diri berhasil di ubah');
     }
     // end pemain
     // admin

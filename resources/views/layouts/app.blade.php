@@ -66,6 +66,9 @@
                     <li class="nav-item">
                         <a href="{{url('pemain/get/result')}}" class="nav-link {{Request::is('pemain/get/result')?'active':''}}">Result</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{url('pemain/data/profile')}}" class="nav-link {{Request::is('pemain/data/profile')?'active':''}}">Profile</a>
+                    </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
