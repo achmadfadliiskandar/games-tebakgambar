@@ -54,7 +54,7 @@ border-radius: 4px;
                 <a class="nav-link " href="/#home">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/#about">About</a>
+                <a class="nav-link" href="/#fitur">Feature</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/#carabermain">Cara Bermain</a>
@@ -88,24 +88,47 @@ border-radius: 4px;
             <section id="home" class="home">
             <h1 class="display-2">TebarF2Game</h1>
             <p class="lead text-capitalize">game tebak gambar sederhana dibuat dengan laravel 9 dan boostrap 5</p>
-            <a href="/home" class="btn btn-primary text-capitalize">play now</a>
+            {{-- <a href="/home" class="btn btn-primary text-capitalize">play now</a> --}}
+            <button class="btn btn-primary text-capitalize" onclick="playnow()">play now</button>
             </section>
         </div>
     </header>
     <!-- End Jumbotron -->
 
-    <!-- About -->
-    <section class="about" id="about">
+    <!-- Feature -->
+    <section class="fitur" id="fitur">
         <div class="container">
-            <h2 class="text-center text-capitalize">about</h2>
-            <p class="text-center text-capitalize">tentang permainan ini dibuat/tercipta</p>
+            <h2 class="text-center text-capitalize">Feature</h2>
+            <p class="text-center text-capitalize">kelebihan-kelebihan yang ada di game ini</p>
             <div class="row">
-                <div class="col-sm-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit, repellendus placeat! Dolore voluptate nihil rem veritatis animi, ratione repellat in labore ex sequi ab obcaecati error eius nobis earum, commodi vero alias consequatur voluptatibus soluta? Autem officia hic eligendi perspiciatis repudiandae nulla ut quos quisquam pariatur neque quod sint impedit maiores maxime, minima, qui delectus non amet accusantium quae? Inventore rem consequatur provident doloremque, hic unde ipsam, facilis</div>
-                <div class="col-sm-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, odit unde ex aspernatur repellat excepturi labore exercitationem ipsa vel dicta blanditiis dolor doloremque fugit numquam adipisci quam deserunt necessitatibus corrupti sit aut magni iure dolore obcaecati rerum. Ut numquam, aut nam excepturi eligendi cumque, consectetur fugiat ullam repudiandae qui saepe pariatur veritatis unde quaerat neque eaque sit in nihil deserunt nulla a sunt atque odio et? Sunt corporis possimus commodi odio eveniet ex id rem.</div>
+                <div class="col-sm-4">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                        <h3 class="card-title">Menentukan Waktu Tercepat Dan Terlama</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">waktu dari para pemain yang tercepat</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                        <h3 class="card-title">Data Profile</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">data yang berguna untuk melihat history anda</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                        <h3 class="card-title">Mengetahui Jumlah Semua Pemain</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">Pemain Dapat Mengetahui Jumlah yang ada didata pemain</h6>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <!-- About -->
+    <!-- Feature -->
 
     <!-- backtotop -->
     <button class="btn btn-primary" id="myBtn" onclick="topFunction()">&uparrow;</button>
@@ -138,7 +161,7 @@ border-radius: 4px;
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="text-center text-capitalize">contact</h2>
-            <p class="text-center text-capitalize">jika ada yang di tanyakan silahkan hubungi kontak di bawah ini</p>
+            <p class="text-center text-capitalize">jika ada yang di tanyakan silahkan isi form di bawah ini Terima kasih &#128514;</p>
             @if ($errors->any())
                 <script>
                     alert('data gagal diterima')
@@ -218,5 +241,10 @@ document.body.scrollTop = 0;
 document.documentElement.scrollTop = 0;
 }
 // untuk mendapatkan fungsi back totop
+// untuk mengerakan ke bawah ke carabermain
+function playnow() {
+    window.scrollTo(0, 700);
+}
+// untuk mengerakan ke bawah ke carabermain
 </script>
 </html>
