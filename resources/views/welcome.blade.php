@@ -165,14 +165,12 @@ border-radius: 4px;
             @if ($errors->any())
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script>
-                function onload(){
-                Swal.fire(
-                'Data Kosong',
-                'Maaf Data Tidak dapat diterima',
-                'error'
-                )
-                }
-                onload()
+                Swal.fire({
+                    // position: 'top-end',
+                    icon: 'error',
+                    title: 'maaf data tidak dapat diterima',
+                    timer: 1500
+                })
             </script>
             @endif
             <form action="{{url('saran/tambah')}}" method="post">
