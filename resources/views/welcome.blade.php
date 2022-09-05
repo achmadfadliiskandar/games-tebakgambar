@@ -138,18 +138,52 @@ border-radius: 4px;
     <section id="carabermain" class="carabermain bg-light">
         <div class="container">
             <h2 class="text-center text-capitalize">cara bermain</h2>
-            <p class="text-center text-capitalize">bagaimana cara memainkan permainan ini</p>
+            <p class="text-center text-capitalize">bagaimana cara memainkan permainan ini dan sebagai contoh silahkan didemo terlebih dahulu</p>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="card" style="width: 100%;">
-                        <div class="card-header text-center">
-                            Cara Bermain
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @foreach ($rintangangamesss as $item)
+                            <div class="card" style="width: 75%;">
+                                <img class="card-img-top" src="{{asset('images/'.$item->images)}}" alt="Card image cap">
+                                <div class="card-body">
+                                <h5 class="card-title">{{$item->judul}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Level:Demo</h6>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">1.Buka Website TebarF2Game</li>
-                            <li class="list-group-item">2.Login / Register</li>
-                            <li class="list-group-item">3.Silahkan Bermain</li>
-                        </ul>
+                        <div class="col-lg-6">
+                            <h2 class="text-capitalize">silahkan tebak jawabanya</h2>
+                            <div class="timer alert alert-danger">
+                                Waktu Dimulai Dari :
+                                <time id="countdown"></time>
+                                <strong id="keteranganwaktu" style="display: none; text-capitalize">waktunya sudah habis silahkan refresh</strong>
+                            </div>
+                            <form action="{{url('pemain/kirim/jawaban')}}" method="POST" name="form" id="form">
+                                @csrf
+                                <div class="mb-3" style="display:none;">
+                                    <label for="exampleInputEmail1" class="form-label">Nama Judul</label>
+                                    <select class="form-select" aria-label="Default select example" name="rintangan_games_id" id="rintangan_games_id">
+                                        <option value="{{$item->id}}" selected>{{$item->judul}}</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3" style="display:none;">
+                                    <label for="waktu" class="form-label">Waktu</label>
+                                    <input type="text" readonly name="waktu_menjawab" id="waktu" class="form-control @error('waktu_menjawab') is-invalid @enderror" value="{{old('waktu_menjawab')}}">
+                                    @error('waktu_menjawab')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="jawaban" class="form-label">Jawaban</label>
+                                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}">
+                                    @error('jawaban')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn btn-primary my-3 w-100" id="btnsubmit">Submit</button>
+                            </form>                        </div>
                     </div>
                 </div>
             </div>
@@ -169,7 +203,8 @@ border-radius: 4px;
                     // position: 'top-end',
                     icon: 'error',
                     title: 'maaf data tidak dapat diterima',
-                    timer: 5500
+                    text: "Karena Masih ada yang kosong",
+                    timer: 15000
                 })
             </script>
             @endif
@@ -252,6 +287,34 @@ document.documentElement.scrollTop = 0;
 function playnow() {
     window.scrollTo(0, 700);
 }
+// untuk menentukan waktu demo dari aslinya level 1
+    var seconds = {{$item->waktu}}; // waktu ini hitungan nya dari seconds
+    function secondPassed(){
+        var minutes = Math.round((seconds-30)/60),
+        remainingSeconds = seconds % 60;
+
+        if (remainingSeconds < 10) {
+            remainingSeconds = "0" + remainingSeconds;
+        }
+        document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+        document.getElementById('waktu').value =  minutes + ":" + remainingSeconds;
+        // var angka5 = 60 - remainingSeconds;
+        // var angka4 = 5 - minutes;
+        // if (angka5 < 10) {
+        //     document.getElementById('waktu').value = angka4 +":"+ +"0"+ angka5;
+        // }else{
+        //     document.getElementById('waktu').value = angka4 +":"+ angka5;
+        // }
+        // alert(angka5)
+        if (seconds == 0) {
+            clearInterval(countdownTimer);
+            document.getElementById("btnsubmit").disabled = true;
+            document.getElementById("keteranganwaktu").style.display = 'block';
+        } else {
+            seconds--;
+        }
+    }
+    var countdownTimer = setInterval('secondPassed()', 1000);
 // untuk mengerakan ke bawah ke carabermain
 </script>
 </html>

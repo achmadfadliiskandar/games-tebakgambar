@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome'); // halaman utama
-});
+// Route::get('/', function () {
+//     return view('welcome'); // halaman utama
+// });
 
 Auth::routes();
 // untuk pemain
+Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/saran/tambah', [App\Http\Controllers\HomeController::class, 'tambahsaran'])->middleware('guest');
 Route::get('/pemain/start',[App\Http\Controllers\HomeController::class, 'start'])->middleware('checkRole:pemain');

@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('tambahsaran');
+        $this->middleware('auth')->except('tambahsaran','welcome');
     }
 
     /**
@@ -30,6 +30,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     // pemain
+    public function welcome(){
+        $rintangangamesss = RintanganGame::first('id')->paginate(1);
+        return view('welcome',compact('rintangangamesss'));
+    }
     public function index()
     {
         // pengguna dan admin (kalau admin yang login
