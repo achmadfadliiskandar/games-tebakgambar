@@ -163,9 +163,17 @@ border-radius: 4px;
             <h2 class="text-center text-capitalize">contact</h2>
             <p class="text-center text-capitalize">jika ada yang di tanyakan silahkan isi form di bawah ini Terima kasih &#128514;</p>
             @if ($errors->any())
-                <script>
-                    alert('data gagal diterima')
-                </script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                function onload(){
+                Swal.fire(
+                'Data Kosong',
+                'Maaf Data Tidak dapat diterima',
+                'error'
+                )
+                }
+                onload()
+            </script>
             @endif
             <form action="{{url('saran/tambah')}}" method="post">
                 @csrf
@@ -216,6 +224,7 @@ border-radius: 4px;
     </footer>
     <!-- footer -->
     @include('sweetalert::alert')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 <script>
