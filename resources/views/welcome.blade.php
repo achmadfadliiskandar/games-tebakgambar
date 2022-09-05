@@ -169,7 +169,7 @@ border-radius: 4px;
                     // position: 'top-end',
                     icon: 'error',
                     title: 'maaf data tidak dapat diterima',
-                    timer: 1500
+                    timer: 5500
                 })
             </script>
             @endif
