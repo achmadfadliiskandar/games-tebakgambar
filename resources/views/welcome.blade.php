@@ -160,7 +160,7 @@ border-radius: 4px;
                                 <time id="countdown"></time>
                                 <strong id="keteranganwaktu" style="display: none; text-capitalize">waktunya sudah habis silahkan refresh</strong>
                             </div>
-                            <form action="{{url('pemain/kirim/jawaban')}}" method="POST" name="form" id="form">
+                            <form action="{{url('demo/coba/menjawab')}}" method="POST" name="form" id="form">
                                 @csrf
                                 <div class="mb-3" style="display:none;">
                                     <label for="exampleInputEmail1" class="form-label">Nama Judul</label>

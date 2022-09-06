@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('tambahsaran','welcome');
+        $this->middleware('auth')->except('tambahsaran','welcome','demo');
     }
 
     /**
@@ -40,6 +40,25 @@ class HomeController extends Controller
         // tersedia button untuk mengembalikan ke 
         // dashboardnya kalau pengguna tetap di home)
         return view('home');
+    }
+    public function demo(Request $request){
+        $request->validate([
+            'jawaban' => 'required',
+            'waktu_menjawab' => 'required',
+            'rintangan_games_id' => 'required'
+        ]);
+        $playgame = new PlayGame;
+        $playgame->rintangan_games_id = $request->rintangan_games_id;
+        $playgame->jawaban = $request->jawaban;
+        if ($request->jawaban == $playgame->rintangangames->jawaban) {
+            $playgame->waktu_menjawab = $request->waktu_menjawab;
+            $playgame->user_id = 1;
+            return redirect('/')->with('success','Jawaban Anda Benar');
+        }else{
+            $playgame->waktu_menjawab = $request->waktu_menjawab;
+            $playgame->user_id = 1;
+            return redirect()->back()->with('info','Jawaban Anda Salah');
+        }
     }
     public function tambahsaran(Request $request){
         $request->validate([

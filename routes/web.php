@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 // untuk pemain
 Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
+Route::post('/demo/coba/menjawab',[App\Http\Controllers\HomeController::class, 'demo'])->name('demo');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/saran/tambah', [App\Http\Controllers\HomeController::class, 'tambahsaran'])->middleware('guest');
 Route::get('/pemain/start',[App\Http\Controllers\HomeController::class, 'start'])->middleware('checkRole:pemain');
