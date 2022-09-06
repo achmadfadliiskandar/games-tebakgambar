@@ -62,7 +62,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="jawaban" class="form-label">Jawaban</label>
-                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}">
+                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
                     @error('jawaban')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -87,7 +87,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="jawaban" class="form-label">Jawaban</label>
-                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}">
+                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
                     @error('jawaban')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -116,7 +116,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="jawaban" class="form-label">Jawaban</label>
-                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" disabled>
+                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" disabled oninput="hurufbesarsemua()">
                     @error('jawaban')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -162,4 +162,9 @@
         }
     }
     var countdownTimer = setInterval('secondPassed()', 1000);
+    function hurufbesarsemua(){
+        // alert('testing')
+        const huruf = document.getElementById("jawaban");
+        huruf.value = huruf.value.toUpperCase();
+    }
 </script>

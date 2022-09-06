@@ -6,6 +6,7 @@ use App\Models\PlayGame;
 use App\Models\RintanganGame;
 use App\Models\Saran;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -190,6 +191,34 @@ class HomeController extends Controller
     // admin
     public function admin(){
         // khusus untuk admin
+        // waktu sekarang 
+        date_default_timezone_set('Asia/Jakarta');
+        // menghitung jumlah user dan saran dan rintangan game
+        $users = User::count();
+        $sarans = Saran::count();
+        $rintangangames = RintanganGame::count();
+        $playgamescount = PlayGame::count();
+        $playgamesfast = PlayGame::min('waktu_menjawab');
+        $playgamesslow = PlayGame::max('waktu_menjawab');
+        $seluruhpemain = PlayGame::count();
+        // menghitung jumlah user dan saran dan rintangan game
+        $playgames = PlayGame::select(DB::raw("COUNT(*) as count"))
+        ->whereYear('created_at',date('Y'))
+        ->groupBy(DB::raw("Month(created_at)"))
+        ->pluck('count');
+        $month = PlayGame::select(DB::raw("Month(created_at) as month"))
+        ->whereYear('created_at',date('Y'))
+        ->groupBy(DB::raw("Month(created_at)"))
+        ->pluck('month');
+
+        $dataplay = array(0,0,0,0,0,0,0,0,0,0,0,0);
+        foreach ($month as $key => $month) {
+            $dataplay[$month] = $playgames[$key];
+        }
+        return view('admin.index',compact('users','sarans','rintangangames','playgamesfast','playgamesslow','seluruhpemain','dataplay','playgamescount'));
+    }
+    public function admininformasi(){
+        // khusus untuk admin
 
         // data kopit
         $response = Http::get('https://data.covid19.go.id/public/api/prov.json');
@@ -217,7 +246,7 @@ class HomeController extends Controller
         $rintangangames = RintanganGame::count();
         // menghitung jumlah user dan saran dan rintangan game
 
-        return view('admin.index',compact('data','datasholat','databadminton','users','sarans','rintangangames'));
+        return view('admin.informasiumum',compact('data','datasholat','databadminton','users','sarans','rintangangames'));
     }
     public function adminsaran(){
         $sarans = Saran::all();

@@ -35,6 +35,7 @@ Route::patch('/pemain/update/data/diri/{getuserlogin}',[App\Http\Controllers\Hom
 
 // khusus admin
 Route::get('/admin',[App\Http\Controllers\HomeController::class, 'admin'])->middleware('checkRole:admin');
+Route::get('/admin/informasiumum',[App\Http\Controllers\HomeController::class, 'admininformasi'])->middleware('checkRole:admin');
 Route::get('/admin/saran',[App\Http\Controllers\HomeController::class, 'adminsaran'])->middleware('checkRole:admin');
 Route::delete('/admin/saran/hapus/{id}', [App\Http\Controllers\HomeController::class, 'adminhapussaran'])->middleware('checkRole:admin');
 Route::get('/admin/users',[App\Http\Controllers\HomeController::class, 'adminusers'])->middleware('checkRole:admin');

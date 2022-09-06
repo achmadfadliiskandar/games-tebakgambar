@@ -7,7 +7,7 @@
     </div>
     <ul class="sidebar-menu">
     <li class="menu-header">Dashboard</li>
-    <li class="dropdown {{Request::is('admin') ? 'active':''}}">
+    <li class="dropdown {{Request::is('admin') ? 'active':''}} || {{Request::is('admin/informasiumum') ? 'active':''}}">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
         <ul class="dropdown-menu">
         {{-- <li>
@@ -15,6 +15,9 @@
         </li> --}}
         <li class="{{Request::is('admin') ? 'active':''}}">
             <a class="nav-link text-capitalize" href="{{url('admin')}}">admin</a>
+        </li>
+        <li class="{{Request::is('admin/informasiumum') ? 'active':''}}">
+            <a class="nav-link text-capitalize" href="{{url('admin/informasiumum')}}">informasi umum</a>
         </li>
         </ul>
     </li>
