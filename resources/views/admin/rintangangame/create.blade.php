@@ -30,7 +30,7 @@
         </div>
         <div class="mb-3">
             <label for="jawaban" class="form-label">Jawaban</label>
-            <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}">
+            <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
             @error('jawaban')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -60,3 +60,11 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 @endsection
+
+<script>
+    function hurufbesarsemua(){
+        // alert('testing')
+        const huruf = document.getElementById("jawaban");
+        huruf.value = huruf.value.toUpperCase();
+    }
+</script>

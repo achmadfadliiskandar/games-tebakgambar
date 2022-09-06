@@ -31,7 +31,7 @@
         </div>
         <div class="mb-3">
             <label for="jawaban" class="form-label">Jawaban</label>
-            <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{$rintangangames->jawaban}}">
+            <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{$rintangangames->jawaban}}" oninput="hurufbesarsemua()">
             @error('jawaban')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -44,12 +44,23 @@
             @enderror
             <div id="emailHelp" class="form-text">waktu harus ditulis angka ya contoh 60 artinya itu 1 menit</div>
         </div>
+        @if ($rintangangames->required == null)
+            <div class="alert alert-danger my-3 text-capitalize">skip saja</div>
+        @else
         <div class="mb-3">
             <label for="required" class="form-label">required</label>
-            <input type="number" name="required" id="required" class="form-control" value="{{$rintangangames->required}}">
+            <input type="number" name="required" id="required" class="form-control" value="{{$rintangangames->required}}" readonly>
             <div id="emailHelp" class="form-text">required harus ditulis angka ya</div>
         </div>
+        @endif
         <button type="submit" class="btn btn-success">Submit</button>
         <a href="{{url('admin/rintangangame')}}" class="btn btn-danger">Back</a>
     </form>
 @endsection
+<script>
+    function hurufbesarsemua(){
+        // alert('testing')
+        const huruf = document.getElementById("jawaban");
+        huruf.value = huruf.value.toUpperCase();
+    }
+</script>
