@@ -198,6 +198,7 @@ class HomeController extends Controller
         $sarans = Saran::count();
         $rintangangames = RintanganGame::count();
         $playgamescount = PlayGame::count();
+        $playgamess = PlayGame::all();
         $playgamesfast = PlayGame::min('waktu_menjawab');
         $playgamesslow = PlayGame::max('waktu_menjawab');
         $seluruhpemain = PlayGame::count();
@@ -215,7 +216,7 @@ class HomeController extends Controller
         foreach ($month as $key => $month) {
             $dataplay[$month] = $playgames[$key];
         }
-        return view('admin.index',compact('users','sarans','rintangangames','playgamesfast','playgamesslow','seluruhpemain','dataplay','playgamescount'));
+        return view('admin.index',compact('users','sarans','rintangangames','playgamesfast','playgamesslow','seluruhpemain','dataplay','playgamescount','playgamess'));
     }
     public function admininformasi(){
         // khusus untuk admin

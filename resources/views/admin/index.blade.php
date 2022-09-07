@@ -51,8 +51,20 @@
                     {{-- start --}}
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Jumlah Seluruh Pemain : {{$playgamescount}}</li>
-                        <li class="list-group-item">Waktu Pemain Tercepat : {{$playgamesfast}}</li>
-                        <li class="list-group-item">Waktu Pemain Terlama : {{$playgamesslow}}</li>
+                        <li class="list-group-item">Waktu Pemain Tercepat : 
+                        @foreach ($playgamess as $item)
+                            @if ($item->waktu_menjawab == $playgamesfast)
+                                {{$item->waktu_menjawab}} | {{$item->user->name}}
+                            @endif
+                        @endforeach
+                        </li>
+                        <li class="list-group-item text-capitalize">Waktu Pemain Terlama : 
+                        @foreach ($playgamess as $item)
+                            @if ($item->waktu_menjawab == $playgamesslow)
+                                {{$item->waktu_menjawab}} | {{$item->user->name}}
+                            @endif
+                        @endforeach
+                        </li>
                         <li class="list-group-item">API Tentang : Covid 19 , BWF , JamSholat</li>
                         <li class="list-group-item">Jumlah API : 3</li>
                     </ul>
