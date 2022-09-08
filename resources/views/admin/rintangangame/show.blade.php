@@ -25,8 +25,11 @@
             @endif
         </div>
         <div class="col-sm-12 my-3">
+            <h2>Warna HexaCode : {{$rintangangames->warna}}</h2>
+            <div class="card pl-3 pt-3 text-white" style="background: {{$rintangangames->warna}}">
             <h2>Pembuat Rintangan Game : {{$rintangangames->user->name}}</h2>
             <p>Dibuat Pada : {{$rintangangames->created_at}}</p>
+            </div>
             <a href="{{url('admin/rintangangame')}}" class="text-capitalize btn btn-danger">back</a>
         </div>
     </div>

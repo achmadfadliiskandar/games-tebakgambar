@@ -321,6 +321,7 @@ class HomeController extends Controller
             'level' => 'required',
             'jawaban' => 'required',
             'waktu' => 'required',
+            'warna'=> 'required'
         ]);
 
         $namagambar = $request->images->getClientOriginalName(). '.' .time(). '.' .$request->images->extension();
@@ -333,6 +334,7 @@ class HomeController extends Controller
         $rintangangame->jawaban = $request->jawaban;
         $rintangangame->required = $request->required;
         $rintangangame->waktu = $request->waktu;
+        $rintangangame->warna = $request->warna;
         $rintangangame->user_id = Auth::user()->id;
         $rintangangame->save();
         return redirect('/admin/rintangangame')->with('success','Rintangan Game Berhasil Ditambah');
@@ -371,6 +373,7 @@ class HomeController extends Controller
         $rintangangames->level = $request->level;
         $rintangangames->jawaban = $request->jawaban;
         $rintangangames->waktu = $request->waktu;
+        $rintangangames->warna = $request->warna;
         $rintangangames->required = $request->required;
         $rintangangames->save();
         return redirect('admin/rintangangame')->with('success','Rintangan Berhasil Di Edit');

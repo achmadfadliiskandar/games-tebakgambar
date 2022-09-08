@@ -8,6 +8,14 @@
 <link rel="icon" href="{{asset('logo.jpeg')}}">
 </head>
 <style>
+body{
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+footer{
+    margin-top: auto;
+}
 html{
     scroll-behavior: smooth;
 }
@@ -183,7 +191,9 @@ border-radius: 4px;
                                     @enderror
                                 </div>
                                 <button type="submit" class="btn btn-primary my-3 w-100" id="btnsubmit">Submit</button>
-                            </form>                        </div>
+                                <a href="{{url('/')}}" class="btn btn-primary my-3 w-100" style="display: none;" id="btnsubmits">Restart</a>
+                            </form>                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -308,8 +318,9 @@ function playnow() {
         // alert(angka5)
         if (seconds == 0) {
             clearInterval(countdownTimer);
-            document.getElementById("btnsubmit").disabled = true;
+            document.getElementById("btnsubmit").style.display = 'none';
             document.getElementById("keteranganwaktu").style.display = 'block';
+            document.getElementById("btnsubmits").style.display = 'block';
         } else {
             seconds--;
         }

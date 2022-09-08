@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('jawaban');
             $table->string('required')->nullable();
             $table->integer('waktu')->nullable();
+            $table->string('warna')->nullable();
             // $table->time('waktu');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

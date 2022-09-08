@@ -44,6 +44,14 @@
             @enderror
             <div id="emailHelp" class="form-text">waktu harus ditulis angka ya contoh 60 artinya itu 1 menit</div>
         </div>
+        <div class="mb-3">
+            <label for="warna" class="form-label">warna</label>
+            <input type="color" name="warna" id="warna" class="form-control @error('warna') is-invalid @enderror form-control-color" value="{{$rintangangames->warna}}">
+            @error('warna')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <div id="emailHelp" class="form-text">warna dipilih dengan rgb contoh #000 berarti itu warna hitam</div>
+        </div>
         @if ($rintangangames->required == null)
             <div class="alert alert-danger my-3 text-capitalize">skip saja</div>
         @else

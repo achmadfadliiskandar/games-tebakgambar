@@ -25,7 +25,8 @@
 <!-- Link CDN -->
 </head>
 <body>
-<div id="app">
+<div id="app" style="min-height:100vh; display:flex; flex-direction:column; 
+justify-content:space-between;">
     <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">

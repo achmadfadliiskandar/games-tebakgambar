@@ -10,12 +10,12 @@
                 @forelse ($rintangangamess as $game)
                 <div class="col-md-4">
                     <div class="card" style="width: 100%;">
-                        <img src="{{asset('images/'.$game->images)}}" class="card-img-top" alt="gambar">
-                        <div class="card-body">
+                        {{-- <img src="{{asset('images/'.$game->images)}}" class="card-img-top" alt="gambar"> --}}
+                        <div class="card-body" style="background: {{$game->warna}}">
                         <h3 class="card-title">Judul : {{$game->judul}}</h3>
                         <h5 class="card-subtitle mb-2 text-muted">Level : {{$game->level}}</h5>
                         @if ($game->required == NULL)
-                        <h6 class="card-text text-danger text-capitalize">tidak ada persyaratan/required</h6>
+                        <h6 class="card-text text-dark text-capitalize">tidak ada persyaratan/required</h6>
                         @else
                         <h6 class="card-text">Required : Harus Kelar Level : {{$game->required}}</h6>
                         @endif

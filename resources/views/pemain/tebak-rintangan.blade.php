@@ -23,6 +23,7 @@
             <div class="alert alert-danger my-3">Maaf Persyaratan Tidak Cukup</div>
             @endif
             <div class="col-sm-6">
+                @if ($aktifbermain > $rintangangames->required)
                 <div class="card" style="width: 75%;">
                     <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar">
                     <div class="card-body">
@@ -36,6 +37,35 @@
                     @endif
                     </div>
                 </div>
+                @elseif ($aktifbermain == $rintangangames->required)
+                <div class="card" style="width: 75%;">
+                    <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar">
+                    <div class="card-body">
+                    <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
+                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5>
+                    <p class="card-text">Created at : {{$rintangangames->created_at}}</p>
+                    @if ($rintangangames->required == null)
+                    <p class="card-text text-danger text-capitalize">Required : tidak ada persyaratan</p>
+                    @else
+                    <p class="card-text">Required : Harus Kelar Level : {{$rintangangames->required}}</p>
+                    @endif
+                    </div>
+                </div>
+                @else
+                <div class="card" style="width: 75%;">
+                    {{-- <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar"> --}}
+                    <div class="card-body" style="background: {{$rintangangames->warna}}">
+                    <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
+                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5>
+                    <p class="card-text">Created at : {{$rintangangames->created_at}}</p>
+                    @if ($rintangangames->required == null)
+                    <p class="card-text text-danger text-capitalize">Required : tidak ada persyaratan</p>
+                    @else
+                    <p class="card-text">Required : Harus Kelar Level : {{$rintangangames->required}}</p>
+                    @endif
+                    </div>
+                </div>
+                @endif
             </div>
             <div class="col-sm-6">
                 <h2>Silahkan Tebak Jawabanya</h2>
