@@ -52,7 +52,8 @@
                     </div>
                 </div>
                 @else
-                <div class="card" style="width: 75%;">
+                <div class="card">
+                    <h2 class="text-capitalize my-3 text-center">mohon baca persyaratanya ya &#128514;</h2>
                     {{-- <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar"> --}}
                     <div class="card-body" style="background: {{$rintangangames->warna}}">
                     <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
