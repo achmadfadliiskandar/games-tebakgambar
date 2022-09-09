@@ -127,7 +127,7 @@ class HomeController extends Controller
             $playgame->waktu_menjawab = $request->waktu_menjawab;
             $playgame->user_id = Auth::user()->id;
             $playgame->save();
-            return redirect('pemain/get/result')->with('success','Jawaban Anda Benar');
+            return redirect('pemain/start')->with('success','Jawaban Anda Benar');
             // dd("jawaban benar");
         }else{
             $playgame->waktu_menjawab = $request->waktu_menjawab;
@@ -150,7 +150,7 @@ class HomeController extends Controller
         if ($request->jawaban == $playgame->rintangangames->jawaban) {
             $playgame->waktu_menjawab = $request->waktu_menjawab;
             $playgame->user_id = Auth::user()->id;
-            return redirect('pemain/get/result')->with('success','Jawaban Anda Benar');
+            return redirect('pemain/start')->with('success','Jawaban Anda Benar');
         }else{
             $playgame->waktu_menjawab = $request->waktu_menjawab;
             $playgame->user_id = Auth::user()->id;
