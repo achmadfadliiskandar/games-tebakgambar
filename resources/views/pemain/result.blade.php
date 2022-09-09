@@ -56,7 +56,7 @@
             @endforeach
         </tbody>
     </table>
-    <div class="alert alert-info my-3">Jumlah Anda Bermain : {{$aktifbermain}}</div>
+    <div class="alert alert-info my-3">Poin Anda : {{$aktifbermain}}</div>
     </div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

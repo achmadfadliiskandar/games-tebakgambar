@@ -65,14 +65,14 @@ class HomeController extends Controller
         $request->validate([
             'nama' => 'required',
             'email' => 'required',
-            'alamat' => 'required',
+            // 'alamat' => 'required',
             'nohp' => 'required',
             'komentar' => 'required',
         ]);
         $saran = new Saran;
         $saran->nama = $request->nama;
         $saran->email = $request->email;
-        $saran->alamat = $request->alamat;
+        // $saran->alamat = $request->alamat;
         $saran->nohp = $request->nohp;
         $saran->komentar = $request->komentar;
         $saran->save();

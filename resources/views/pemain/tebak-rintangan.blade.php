@@ -53,9 +53,11 @@
                 </div>
                 @else
                 <div class="card">
-                    <h2 class="text-capitalize my-3 text-center">mohon baca persyaratanya ya &#128514;</h2>
+                    
                     {{-- <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar"> --}}
                     <div class="card-body" style="background: {{$rintangangames->warna}}">
+                    <h2 class="text-capitalize my-3 text-center text-danger">mohon baca persyaratanya ya &#128514;</h2>
+                    <hr>
                     <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
                     <h5 class="card-text">Level : {{$rintangangames->level}}</h5>
                     <p class="card-text">Created at : {{$rintangangames->created_at}}</p>

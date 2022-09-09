@@ -152,8 +152,8 @@ border-radius: 4px;
                     <div class="row">
                         <div class="col-lg-6">
                             @foreach ($rintangangamesss as $item)
-                            <div class="card" style="width: 75%;">
-                                <img class="card-img-top" src="{{asset('images/'.$item->images)}}" alt="Card image cap">
+                            <div class="card" style="width: 100%;">
+                                <img class="card-img-top" style="height: 175px;" src="{{asset('images/'.$item->images)}}" alt="Card image cap">
                                 <div class="card-body">
                                 <h5 class="card-title">{{$item->judul}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Level:Demo</h6>
@@ -191,7 +191,7 @@ border-radius: 4px;
                                     @enderror
                                 </div>
                                 <button type="submit" class="btn btn-primary my-3 w-100" id="btnsubmit">Submit</button>
-                                <a href="{{url('/')}}" class="btn btn-primary my-3 w-100" style="display: none;" id="btnsubmits">Restart</a>
+                                <a href="{{url('/')}}" class="btn btn-danger my-3 w-100" style="display: none;" id="btnsubmits">Refresh</a>
                             </form>                        
                         </div>
                     </div>
@@ -227,13 +227,13 @@ border-radius: 4px;
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="alamat" class="form-label">Alamat</label>
                     <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" value="{{old('alamat')}}">
                     @error('alamat')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 <div class="mb-3">
                     <label for="nohp" class="form-label">Nomor HP</label>
                     <input type="nohp" class="form-control @error('nohp') is-invalid @enderror" id="nohp" name="nohp" value="{{old('nohp')}}">

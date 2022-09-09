@@ -16,7 +16,7 @@
     <tr>
     <th scope="col" class="text-danger">No</th>
     <th scope="col" class="text-danger">Nama</th>
-    <th scope="col" class="text-danger">Alamat</th>
+    {{-- <th scope="col" class="text-danger">Alamat</th> --}}
     <th scope="col" class="text-danger">No Hp</th>
     <th scope="col" class="text-danger">Email</th>
     <th scope="col" class="text-danger">Komentar</th>
@@ -28,7 +28,7 @@
         <tr>
             <td>{{$loop->iteration}}</td>
             <td>{{$saran->nama}}</td>
-            <td>{{$saran->alamat}}</td>
+            {{-- <td>{{$saran->alamat}}</td> --}}
             <td>{{$saran->nohp}}</td>
             <td>{{$saran->email}}</td>
             <td>{{$saran->komentar}}</td>
