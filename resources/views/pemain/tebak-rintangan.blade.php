@@ -1,9 +1,16 @@
 @extends('layouts.app')
 
-@section('judul','Tebak Rintangan')
+@section('judul','Halaman Level-'.$rintangangames->id)
 
 @section('content')
+<style>
+    .active{
+        border: 3px solid blue;
+        box-shadow: 5px 5px black;
+    }
+</style>
     <div class="container">
+        <h2 class="text-center text-capitalize">Level {{$rintangangames->id}}</h2>
         <div class="row">
             {{-- pointnya lebih --}}
             @if ($aktifbermain > $rintangangames->required)
@@ -22,147 +29,47 @@
             @else
             <div class="alert alert-danger my-3">Maaf Persyaratan Tidak Cukup</div>
             @endif
-            <div class="col-sm-6">
-                @if ($aktifbermain > $rintangangames->required)
-                <div class="card" style="width: 75%;">
-                    <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar">
-                    <div class="card-body">
-                    <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
-                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5>
-                    <p class="card-text">Created at : {{$rintangangames->created_at}}</p>
-                    @if ($rintangangames->required == null)
-                    <p class="card-text text-danger text-capitalize">Required : tidak ada persyaratan</p>
-                    @else
-                    <p class="card-text">Required : Harus Kelar Level : {{$rintangangames->required}}</p>
-                    @endif
-                    </div>
-                </div>
-                @elseif ($aktifbermain == $rintangangames->required)
-                <div class="card" style="width: 75%;">
-                    <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar">
-                    <div class="card-body">
-                    <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
-                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5>
-                    <p class="card-text">Created at : {{$rintangangames->created_at}}</p>
-                    @if ($rintangangames->required == null)
-                    <p class="card-text text-danger text-capitalize">Required : tidak ada persyaratan</p>
-                    @else
-                    <p class="card-text">Required : Harus Kelar Level : {{$rintangangames->required}}</p>
-                    @endif
+            {{-- form lebih --}}
+
+            {{-- menu --}}
+            @forelse ($rintangangamess as $game)
+                @if ($game->id == $rintangangames->id)
+                <div class="col-md-4 my-3">
+                    <div class="card active" style="width: 100%;">
+                        {{-- <img src="{{asset('images/'.$game->images)}}" class="card-img-top" alt="gambar"> --}}
+                        <div class="card-body" style="background: {{$game->warna}}">
+                        <h3 class="card-title">Judul : {{$game->judul}}</h3>
+                        <h5 class="card-subtitle mb-2 text-muted">Level : {{$game->level}}</h5>
+                        @if ($game->required == NULL)
+                        <h6 class="card-text text-dark text-capitalize">tidak ada persyaratan/required</h6>
+                        @else
+                        <h6 class="card-text">Required : Harus Kelar Level : {{$game->required}}</h6>
+                        @endif
+                        <a href="{{url('pemain/answer/jawab/'.$game->id)}}" class="btn btn-primary">Silahkan Menebak</a>
+                        </div>
                     </div>
                 </div>
                 @else
-                <div class="card">
-                    
-                    {{-- <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar"> --}}
-                    <div class="card-body" style="background: {{$rintangangames->warna}}">
-                    <h2 class="text-capitalize my-3 text-center text-danger">mohon baca persyaratanya ya &#128514;</h2>
-                    <hr>
-                    <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
-                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5>
-                    <p class="card-text">Created at : {{$rintangangames->created_at}}</p>
-                    @if ($rintangangames->required == null)
-                    <p class="card-text text-danger text-capitalize">Required : tidak ada persyaratan</p>
-                    @else
-                    <p class="card-text">Required : Harus Kelar Level : {{$rintangangames->required}}</p>
-                    @endif
+                <div class="col-md-4 my-3">
+                    <div class="card" style="width: 100%;">
+                        {{-- <img src="{{asset('images/'.$game->images)}}" class="card-img-top" alt="gambar"> --}}
+                        <div class="card-body" style="background: {{$game->warna}}">
+                        <h3 class="card-title">Judul : {{$game->judul}}</h3>
+                        <h5 class="card-subtitle mb-2 text-muted">Level : {{$game->level}}</h5>
+                        @if ($game->required == NULL)
+                        <h6 class="card-text text-dark text-capitalize">tidak ada persyaratan/required</h6>
+                        @else
+                        <h6 class="card-text">Required : Harus Kelar Level : {{$game->required}}</h6>
+                        @endif
+                        <a href="{{url('pemain/answer/jawab/'.$game->id)}}" class="btn btn-primary">Silahkan Menebak</a>
+                        </div>
                     </div>
                 </div>
                 @endif
-            </div>
-            <div class="col-sm-6">
-                <h2>Silahkan Tebak Jawabanya</h2>
-                <div class="timer alert alert-danger">
-                    Waktu Dimulai Dari :
-                    <time id="countdown"></time>
-                    <strong id="keteranganwaktu" style="display: none; text-capitalize">waktunya sudah habis silahkan refresh</strong>
-                </div>
-            @if ($aktifbermain > $rintangangames->required)
-            <form action="{{url('pemain/kirim/jawaban/coba/lagi')}}" method="POST" name="form" id="form">
-                @csrf
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Nama Judul</label>
-                    <select class="form-select" aria-label="Default select example" name="rintangan_games_id" id="rintangan_games_id">
-                        <option value="{{$rintangangames->id}}" selected>{{$rintangangames->judul}}</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="waktu" class="form-label">Waktu</label>
-                    <input type="text" readonly name="waktu_menjawab" id="waktu" class="form-control @error('waktu_menjawab') is-invalid @enderror" value="{{old('waktu_menjawab')}}">
-                    @error('waktu_menjawab')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="jawaban" class="form-label">Jawaban</label>
-                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
-                    @error('jawaban')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <button type="submit" class="btn btn-primary my-3 w-100" id="btnsubmit">Submit</button>
-            </form>
-            @elseif($aktifbermain == $rintangangames->required)
-            <form action="{{url('pemain/kirim/jawaban')}}" method="POST" name="form" id="form">
-                @csrf
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Nama Judul</label>
-                    <select class="form-select" aria-label="Default select example" name="rintangan_games_id" id="rintangan_games_id">
-                        <option value="{{$rintangangames->id}}" selected>{{$rintangangames->judul}}</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="waktu" class="form-label">Waktu</label>
-                    <input type="text" readonly name="waktu_menjawab" id="waktu" class="form-control @error('waktu_menjawab') is-invalid @enderror" value="{{old('waktu_menjawab')}}">
-                    @error('waktu_menjawab')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="jawaban" class="form-label">Jawaban</label>
-                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
-                    @error('jawaban')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                @if ($aktifbermain >= $rintangangames->required)
-                <button type="submit" class="btn btn-primary my-3 w-100" id="btnsubmit">Submit</button>
-                @else
-                <button type="submit" disabled class="btn btn-primary my-3 w-100">Submit</button>
-                @endif
-            </form>
-            @else
-            <form action="{{url('pemain/kirim/jawaban')}}" method="POST" name="form" id="form">
-                @csrf
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Nama Judul</label>
-                    <select class="form-select" aria-label="Default select example" name="rintangan_games_id" id="rintangan_games_id" disabled>
-                        <option value="{{$rintangangames->id}}" selected>{{$rintangangames->judul}}</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="waktu" class="form-label">Waktu</label>
-                    <input type="text" readonly name="waktu_menjawab" id="waktu" class="form-control @error('waktu_menjawab') is-invalid @enderror" value="{{old('waktu_menjawab')}}" disabled>
-                    @error('waktu_menjawab')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="jawaban" class="form-label">Jawaban</label>
-                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" disabled oninput="hurufbesarsemua()">
-                    @error('jawaban')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                @if ($aktifbermain >= $rintangangames->required)
-                <button type="submit" class="btn btn-primary my-3 w-100" id="btnsubmit">Submit</button>
-                @else
-                <button type="submit" disabled class="btn btn-primary my-3 w-100">Submit</button>
-                @endif
-            </form>
-            @endif
-            </div>
-        </div>
+                @empty
+                <div class="alert alert-danger text-capitalize">tidak ada rintangan game</div>
+                @endforelse
+            {{-- menu --}}
         <a href="{{url('/pemain/start')}}" class="btn btn-warning my-3 text-capitalize">back</a>
     </div>
 @endsection

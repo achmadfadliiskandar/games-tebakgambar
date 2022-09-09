@@ -95,11 +95,22 @@ class HomeController extends Controller
     }
     public function tebak($id){
         $rintangangames = RintanganGame::find($id);
+        $rintangangamess = RintanganGame::all();
         if ($rintangangames == null) {
             return abort(404);
         } else {
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
-        return view('pemain.tebak-rintangan',compact('rintangangames','aktifbermain'));
+        return view('pemain.tebak-rintangan',compact('rintangangames','aktifbermain','rintangangamess'));
+        }
+    }
+    public function tebakjawaban($id){
+        $rintangangames = RintanganGame::find($id);
+        $rintangangamess = RintanganGame::all();
+        if ($rintangangames == null) {
+            return abort(404);
+        } else {
+        $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
+        return view('pemain.answer',compact('rintangangames','aktifbermain','rintangangamess'));
         }
     }
     public function jawab(Request $request){
