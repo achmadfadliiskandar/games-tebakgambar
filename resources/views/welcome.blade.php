@@ -207,6 +207,7 @@ border-radius: 4px;
             <h2 class="text-center text-capitalize">contact</h2>
             <p class="text-center text-capitalize">jika ada yang di tanyakan silahkan isi form di bawah ini Terima kasih &#128514;</p>
             @if ($errors->any())
+            {{-- folder swwet alert --}}
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script>
                 Swal.fire({
@@ -217,6 +218,7 @@ border-radius: 4px;
                     timer: 15000
                 })
             </script>
+            {{-- end folder sweet alert --}}
             @endif
             <form action="{{url('saran/tambah')}}" method="post">
                 @csrf
