@@ -62,7 +62,7 @@
                         <h6 class="card-text">Required : Harus Kelar Level : {{$game->required}}</h6>
                         @endif
                         @if ($aktifbermain >= $game->required)
-                        <a href="{{url('pemain/tebak-rintangan/'.$game->id)}}" class="btn btn-primary">Silahkan Menebak</a>
+                        <a href="{{url('pemain/tebak-rintangan/'.$game->id)}}" class="btn btn-primary">Level : {{$game->id}}</a>
                         @else
                         <button class="btn btn-danger" disabled>
                             <a href="{{url('pemain/tebak-rintangan/'.$game->id)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
