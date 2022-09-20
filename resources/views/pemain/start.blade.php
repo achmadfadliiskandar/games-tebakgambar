@@ -12,7 +12,7 @@
                     <div class="card" style="width: 100%;">
                         {{-- <img src="{{asset('images/'.$game->images)}}" class="card-img-top" alt="gambar"> --}}
                         <div class="card-body" style="background: {{$game->warna}}">
-                        <h3 class="card-title">Soal : {{$game->level}}</h3>
+                        <h3 class="card-title">Level : {{$game->level}}</h3>
                         <h5 class="card-subtitle mb-2 text-muted">Judul : {{$game->judul}}</h5>
                         @if ($game->required == NULL)
                         <h6 class="card-text text-dark text-capitalize">tidak ada persyaratan/required</h6>
