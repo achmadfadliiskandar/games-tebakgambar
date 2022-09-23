@@ -17,7 +17,13 @@ class RintanganGame extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function levelgame(){
+        return $this->hasOne(LevelGame::class);
+    }
     public function playgame(){
         return $this->hasOne(PlayGame::class);
+    }
+    public function detailgames(){
+        return $this->hasMany(DetailLevel::class);
     }
 }

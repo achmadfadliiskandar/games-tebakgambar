@@ -15,8 +15,8 @@
             <thead>
                 <tr>
                 <th scope="col" class="text-danger">No</th>
-                <th scope="col" class="text-danger">Judul</th>
-                <th scope="col" class="text-danger">Level</th>
+                <th scope="col" class="text-danger">Waktu</th>
+                {{-- <th scope="col" class="text-danger">Syarat</th> --}}
                 <th scope="col" class="text-danger">Jawaban</th>
                 <th scope="col" class="text-danger">Required</th>
                 <th scope="col" class="text-danger">Action</th>
@@ -26,8 +26,8 @@
                 @forelse ($rintangangames as $rintangangame)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$rintangangame->judul}}</td>
-                        <td>{{$rintangangame->level}}</td>
+                        <td>{{$rintangangame->waktu}} : Menit</td>
+                        {{-- <td>{{$rintangangame->required}}</td> --}}
                         <td>{{$rintangangame->jawaban}}</td>
                         <td>
                             @if ($rintangangame->required == null)

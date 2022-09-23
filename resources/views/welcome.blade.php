@@ -155,8 +155,8 @@ border-radius: 4px;
                             <div class="card" style="width: 100%;">
                                 <img class="card-img-top" src="{{asset('images/'.$item->images)}}" alt="Card image cap">
                                 <div class="card-body">
-                                <h5 class="card-title">{{$item->judul}}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Level:Demo</h6>
+                                {{-- <h5 class="card-title">{{$item->judul}}</h5> --}}
+                                <h3 class="card-subtitle mb-2 text-muted">Level:Demo</h3>
                                 </div>
                             </div>
                             @endforeach

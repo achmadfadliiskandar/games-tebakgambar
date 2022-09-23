@@ -11,10 +11,10 @@
             <img src="{{asset('images/'.$rintangangames->images)}}" alt="gambar" class="rounded" style="width: 60%;">
         </div>
         <div class="col-sm-6">
-            <h2>Judul : </h2>
+            {{-- <h2>Judul : </h2>
             <p>{{$rintangangames->judul}}</p>
             <h2>Level : </h2>
-            <p>{{$rintangangames->level}}</p>
+            <p>{{$rintangangames->level}}</p> --}}
             <h2>Jawaban : </h2>
             <p>{{$rintangangames->jawaban}}</p>
             <h2>Required</h2>

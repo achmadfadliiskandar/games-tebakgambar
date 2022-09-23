@@ -52,4 +52,17 @@ Route::get('/admin/rintangangame/detail/{id}',[App\Http\Controllers\HomeControll
 Route::get('/admin/rintangangame/edit/{id}',[App\Http\Controllers\HomeController::class, 'adminrintanganedit'])->middleware('checkRole:admin');
 Route::put('admin/rintangangame/update/{id}',[App\Http\Controllers\HomeController::class, 'adminrintanganupdate'])->middleware('checkRole:admin');
 Route::delete('admin/rintangangame/hapus/{id}',[App\Http\Controllers\HomeController::class, 'adminrintanganhapus'])->middleware('checkRole:admin');
+Route::get('/admin/levelgame',[App\Http\Controllers\HomeController::class, 'adminlevelgame'])->middleware('checkRole:admin');
+Route::get('/admin/levelgame/tambah',[App\Http\Controllers\HomeController::class, 'adminlevelgametambah'])->middleware('checkRole:admin');
+Route::post('/admin/levelgame/store',[App\Http\Controllers\HomeController::class, 'adminlevelgamestore'])->middleware('checkRole:admin');
+Route::get('/admin/levelgame/edit/{id}',[App\Http\Controllers\HomeController::class, 'adminlevelgameedit'])->middleware('checkRole:admin');
+Route::put('/admin/levelgame/update/{id}',[App\Http\Controllers\HomeController::class, 'adminlevelgameupdate'])->middleware('checkRole:admin');
+Route::delete('admin/levelgame/hapus/{id}',[App\Http\Controllers\HomeController::class, 'adminlevelgamehapus'])->middleware('checkRole:admin');
+Route::get('/admin/levelgame/detail/{id}',[App\Http\Controllers\HomeController::class, 'adminlevelgamedetail'])->middleware('checkRole:admin');
+Route::get('/admin/groupgame',[App\Http\Controllers\HomeController::class, 'admingroupgame'])->middleware('checkRole:admin');
+Route::get('/admin/groupgame/tambah',[App\Http\Controllers\HomeController::class, 'admingroupgametambah'])->middleware('checkRole:admin');
+Route::post('/admin/groupgame/store',[App\Http\Controllers\HomeController::class, 'admingroupgamestore'])->middleware('checkRole:admin');
+Route::get('/admin/groupgame/edit/{id}',[App\Http\Controllers\HomeController::class, 'admingroupgamesedit'])->middleware('checkRole:admin');
+Route::put('/admin/groupgame/update/{id}',[App\Http\Controllers\HomeController::class, 'admingroupgameupdate'])->middleware('checkRole:admin');
+Route::delete('admin/groupgame/hapus/{id}',[App\Http\Controllers\HomeController::class, 'admingroupgamehapus'])->middleware('checkRole:admin');
 // end admin

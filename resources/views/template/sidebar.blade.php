@@ -86,6 +86,24 @@
         <li><a class="nav-link" href="errors-500.html">500</a></li>  --}}
         </ul>
     </li>
+    <li class="dropdown {{Request::is('admin/levelgame') ? 'active':''}} || {{Request::is('admin/levelgame/tambah') ? 'active':''}}">
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-level-up-alt"></i> <span class="text-capitalize">data level game</span></a>
+        <ul class="dropdown-menu">
+        <li class="{{Request::is('admin/levelgame') ? 'active':''}}"><a class="nav-link" href="{{url('admin/levelgame')}}">Level Game</a></li> 
+        <li class="{{Request::is('admin/levelgame/tambah') ? 'active':''}}"><a class="nav-link" href="{{url('admin/levelgame/tambah')}}">Tambah Level Game</a></li> 
+        {{-- <li><a class="nav-link" href="errors-404.html">404</a></li> 
+        <li><a class="nav-link" href="errors-500.html">500</a></li>  --}}
+        </ul>
+    </li>
+    <li class="dropdown {{Request::is('admin/groupgame') ? 'active':''}} || {{Request::is('admin/groupgame/tambah') ? 'active':''}}">
+        <a href="#" class="nav-link has-dropdown"><i class="fas fa-layer-group"></i> <span class="text-capitalize">data kelompok game</span></a>
+        <ul class="dropdown-menu">
+        <li class="{{Request::is('admin/groupgame') ? 'active':''}}"><a class="nav-link" href="{{url('admin/groupgame')}}">Kelompok Game</a></li> 
+        <li class="{{Request::is('admin/groupgame/tambah') ? 'active':''}}"><a class="nav-link" href="{{url('admin/groupgame/tambah')}}">Tambah Kelompok Game</a></li> 
+        {{-- <li><a class="nav-link" href="errors-404.html">404</a></li> 
+        <li><a class="nav-link" href="errors-500.html">500</a></li>  --}}
+        </ul>
+    </li>
     {{-- <li class="dropdown">
         <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i> <span>Features</span></a>
         <ul class="dropdown-menu">

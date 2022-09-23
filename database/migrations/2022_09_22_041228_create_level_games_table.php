@@ -13,16 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rintangan_games', function (Blueprint $table) {
+        Schema::create('level_games', function (Blueprint $table) {
             $table->id();
-            $table->string('images');
-            // $table->string('judul');
-            // $table->string('level');
-            $table->string('jawaban');
-            $table->string('required')->nullable();
-            $table->integer('waktu')->nullable();
-            $table->string('warna')->nullable();
-            // $table->time('waktu');
+            $table->string('level');
+            $table->string('judul');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
@@ -35,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rintangan_games');
+        Schema::dropIfExists('level_games');
     }
 };

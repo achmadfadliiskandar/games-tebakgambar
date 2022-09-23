@@ -14,7 +14,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label for="level" class="form-label">Level</label>
             <input type="text" name="level" id="level" class="form-control @error('level') is-invalid @enderror" value="{{old('level')}}">
             @error('level')
@@ -27,7 +27,7 @@
             @error('judul')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-        </div>
+        </div> --}}
         <div class="mb-3">
             <label for="jawaban" class="form-label">Jawaban</label>
             <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">

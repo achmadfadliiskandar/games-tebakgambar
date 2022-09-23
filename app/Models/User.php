@@ -42,10 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function rintangangame(){
+    public function rintangangames(){
         return $this->hasOne(RintanganGame::class);
     }
     public function playgame(){
         return $this->hasOne(PlayGame::class);
+    }
+    public function levelgame(){
+        return $this->hasOne(LevelGame::class);
+    }
+    public function detailgames(){
+        return $this->hasMany(DetailLevel::class);
     }
 }
