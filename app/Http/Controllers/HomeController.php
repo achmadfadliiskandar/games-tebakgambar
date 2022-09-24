@@ -82,14 +82,15 @@ class HomeController extends Controller
     }
     public function start(){
         $rintangangamess = RintanganGame::all();
+        $levelgames = LevelGame::all();
         $data_terakhir = RintanganGame::latest('id')->first();
         if (empty($data_terakhir)) {
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
-        return view('pemain.start',compact('rintangangamess','aktifbermain'));
+        return view('pemain.start',compact('rintangangamess','aktifbermain','levelgames'));
         } else {
         $getdataterakhir = $data_terakhir->required + 1;
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
-        return view('pemain.start',compact('rintangangamess','aktifbermain','getdataterakhir'));
+        return view('pemain.start',compact('rintangangamess','aktifbermain','getdataterakhir','levelgames'));
         }
         
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
@@ -98,11 +99,12 @@ class HomeController extends Controller
     public function tebak($id){
         $rintangangames = RintanganGame::find($id);
         $rintangangamess = RintanganGame::all();
-        if ($rintangangames == null) {
+        $levelgames = LevelGame::with('detailgames')->where('id',$id)->first();
+        if ($levelgames == null) {
             return abort(404);
         } else {
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
-        return view('pemain.tebak-rintangan',compact('rintangangames','aktifbermain','rintangangamess'));
+        return view('pemain.tebak-rintangan',compact('rintangangames','aktifbermain','rintangangamess','levelgames'));
         }
     }
     public function tebakjawaban($id){
@@ -394,11 +396,13 @@ class HomeController extends Controller
     public function adminrintanganhapus($id){
         $rintangangames = RintanganGame::find($id);
         $playgames = PlayGame::where('rintangan_games_id',$id);
+        $detailevels = DetailLevel::where('rintangan_games_id',$id);
         $tujuanfile = 'images/'.$rintangangames->images;
         if (File::exists($tujuanfile)) {
             File::delete($tujuanfile);
         }
         $rintangangames->delete();
+        $detailevels->delete();
         $playgames->delete();
         return redirect('admin/rintangangame')->with('success','Rintangan Berhasil Di Hapus');
     }
@@ -463,9 +467,9 @@ class HomeController extends Controller
     }
     public function adminlevelgamehapus($id){
         $levelgames = LevelGame::find($id);
-        // $detailevels = DetailLevel::where('level_games_id',$id);
+        $detailevels = DetailLevel::where('level_games_id',$id);
         $levelgames->delete();
-        // $detailevels->delete();
+        $detailevels->delete();
         return redirect('/admin/levelgame')->with('success','Level Berhasil Di Hapus');
     }
     public function adminlevelgamedetail($id){

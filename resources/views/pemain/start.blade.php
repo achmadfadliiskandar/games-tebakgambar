@@ -7,27 +7,14 @@
         <h1 class="text-center text-capitalize">Selamat Bermain : {{Auth::user()->name}}</h1>
         <p class="text-capitalize text-center">semoga sukses mendapatkan point</p>
             <div class="row">
-                @forelse ($rintangangamess as $game)
+                @forelse ($levelgames as $levelgame)
                 <div class="col-md-4">
                     <div class="card" style="width: 100%;">
                         {{-- <img src="{{asset('images/'.$game->images)}}" class="card-img-top" alt="gambar"> --}}
-                        <div class="card-body" style="background: {{$game->warna}}">
-                        <h3 class="card-title">Level : {{$game->level}}</h3>
-                        <h5 class="card-subtitle mb-2 text-muted">Judul : {{$game->judul}}</h5>
-                        @if ($game->required == NULL)
-                        <h6 class="card-text text-dark text-capitalize">tidak ada persyaratan/required</h6>
-                        @else
-                        <h6 class="card-text">Required : Harus Kelar Level : {{$game->required}}</h6>
-                        @endif
-                        {{-- <div class="alert alert-info my-3">Jumlah Anda Bermain : {{$aktifbermain}}</div> --}}
-                        @if ($aktifbermain >= $game->required)
-                        <a href="{{url('pemain/tebak-rintangan/'.$game->id)}}" class="btn btn-primary">Silahkan Menebak</a>
-                        @else
-                        <button class="btn btn-danger" disabled>
-                            <a href="{{url('pemain/tebak-rintangan/'.$game->id)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
-                        </button>
-                        @endif
-                        {{-- <a href="{{url('pemain/tebak-rintangan/'.$game->id)}}" class="btn btn-primary">Silahkan Menebak</a> --}}
+                        <div class="card-body">
+                        <h3 class="card-title text-capitalize">Level : {{$levelgame->level}}</h3>
+                        <h5 class="card-subtitle mb-2 text-muted text-capitalize">Judul : {{$levelgame->judul}}</h5>
+                        <a href="{{url('pemain/tebak-rintangan/'.$levelgame->id)}}" class="btn btn-primary">Silahkan Menebak</a>
                         </div>
                     </div>
                 </div>

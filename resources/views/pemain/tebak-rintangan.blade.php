@@ -1,85 +1,49 @@
 @extends('layouts.app')
 
-@section('judul','Halaman Level-'.$rintangangames->id)
+@section('judul','Halaman Level-'.$levelgames->id)
 
 @section('content')
-<style>
-    .active{
-        border: 3px solid blue;
-        box-shadow: 5px 5px black;
-    }
-</style>
+
     <div class="container">
-        <h2 class="text-center text-capitalize">Level {{$rintangangames->id}}</h2>
+        <h2 class="text-center text-capitalize">Level {{$levelgames->id}}</h2>
         <div class="row">
             {{-- pointnya lebih --}}
-            @if ($aktifbermain > $rintangangames->required)
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="alert alert-info my-3">Silahkan Bermain : {{Auth::user()->name}}</div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="alert alert-info my-3">Point Anda : {{$aktifbermain}}</div>
-                </div>
-            </div>
-            {{-- kalau poin nya pas di tengah --}}
-            @elseif($aktifbermain == $rintangangames->required)
-            <div class="alert alert-success my-3">Selamat Datang : {{Auth::user()->name}}</div>
-            {{-- kalau poin nya kurang di bawah --}}
-            @else
-            <div class="alert alert-danger my-3">Maaf Persyaratan Tidak Cukup</div>
-            @endif
+
             {{-- form lebih --}}
 
             {{-- menu --}}
-            @forelse ($rintangangamess as $game)
-                @if ($game->id == $rintangangames->id)
-                <div class="col-md-4 my-3">
-                    <div class="card active" style="width: 100%;">
-                        {{-- <img src="{{asset('images/'.$game->images)}}" class="card-img-top" alt="gambar"> --}}
-                        <div class="card-body" style="background: {{$game->warna}}">
-                        <h3 class="card-title">Judul : {{$game->judul}}</h3>
-                        <h5 class="card-subtitle mb-2 text-muted">Level : {{$game->level}}</h5>
-                        @if ($game->required == NULL)
-                        <h6 class="card-text text-dark text-capitalize">tidak ada persyaratan/required</h6>
-                        @else
-                        <h6 class="card-text">Required : Harus Kelar Level : {{$game->required}}</h6>
-                        @endif
-                        <a href="{{url('pemain/answer/jawab/'.$game->id)}}" class="btn btn-primary">Silahkan Menebak</a>
-                        </div>
-                    </div>
-                </div>
-                @else
+            @forelse ($levelgames->detailgames as $item)
+
                 <div class="col-md-4 my-3">
                     <div class="card" style="width: 100%;">
                         {{-- <img src="{{asset('images/'.$game->images)}}" class="card-img-top" alt="gambar"> --}}
-                        <div class="card-body" style="background: {{$game->warna}}">
-                        <h3 class="card-title">Judul : {{$game->judul}}</h3>
-                        <h5 class="card-subtitle mb-2 text-muted">Level : {{$game->level}}</h5>
-                        @if ($game->required == NULL)
-                        <h6 class="card-text text-dark text-capitalize">tidak ada persyaratan/required</h6>
-                        @else
-                        <h6 class="card-text">Required : Harus Kelar Level : {{$game->required}}</h6>
-                        @endif
-                        @if ($aktifbermain >= $game->required)
-                        <a href="{{url('pemain/tebak-rintangan/'.$game->id)}}" class="btn btn-primary">Level : {{$game->id}}</a>
-                        @else
-                        <button class="btn btn-danger" disabled>
-                            <a href="{{url('pemain/tebak-rintangan/'.$game->id)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
-                        </button>
-                        @endif
+                        <div class="card-body" style="background: {{$item->rintangangames->warna}}">
+                            <h3 class="card-title text-capitalize">Soal {{$levelgames->level}} :  Bagian : {{$loop->iteration}}</h3>
+                            <h4 class="card-subtitle mb-2 text-muted">Waktu Pengerjaan : {{$item->rintangangames->waktu}} Detik</h4>
+                            @if ($item->rintangangames->required == null)
+                                <p class="card-text text-danger text-capitalize">tidak ada persyaratan</p>
+                            @else
+                            <p class="card-text">Harus Kelar Soal Level 1 Bagian : {{$item->rintangangames->required}}</p>
+                            @endif
+                            @if ($aktifbermain >= $item->rintangangames->required)
+                            <a href="{{url('pemain/answer/jawab/'.$item->rintangangames->id)}}" class="btn btn-primary">Level : {{$item->rintangangames->id}}</a>
+                            @else
+                            <button class="btn btn-danger" disabled>
+                                <a href="{{url('pemain/answer/jawab/'.$item->rintangangames->id)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
+                            </button>
+                            @endif
                         </div>
                     </div>
                 </div>
-                @endif
+
                 @empty
-                <div class="alert alert-danger text-capitalize">tidak ada rintangan game</div>
+                <div class="alert alert-danger text-capitalize">tidak ada rintangan game dibagian ini</div>
                 @endforelse
             {{-- menu --}}
         <a href="{{url('/pemain/start')}}" class="btn btn-warning my-3 text-capitalize">back</a>
     </div>
 @endsection
-<script>
+{{-- <script>
     // alert('test harusnya bisa')
     var seconds = {{$rintangangames->waktu}}; // waktu ini hitungan nya dari seconds
     function secondPassed(){
@@ -113,4 +77,4 @@
         const huruf = document.getElementById("jawaban");
         huruf.value = huruf.value.toUpperCase();
     }
-</script>
+</script> --}}

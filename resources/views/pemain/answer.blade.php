@@ -27,8 +27,8 @@
                 <div class="card" style="width: 75%;">
                     <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar">
                     <div class="card-body">
-                    <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
-                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5>
+                    {{-- <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
+                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5> --}}
                     <p class="card-text">Created at : {{$rintangangames->created_at}}</p>
                     @if ($rintangangames->required == null)
                     <p class="card-text text-danger text-capitalize">Required : tidak ada persyaratan</p>
@@ -41,8 +41,8 @@
                 <div class="card" style="width: 75%;">
                     <img src="{{asset('images/'.$rintangangames->images)}}" class="card-img-top" alt="gambar">
                     <div class="card-body">
-                    <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
-                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5>
+                    {{-- <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
+                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5> --}}
                     <p class="card-text">Created at : {{$rintangangames->created_at}}</p>
                     @if ($rintangangames->required == null)
                     <p class="card-text text-danger text-capitalize">Required : tidak ada persyaratan</p>
@@ -58,8 +58,8 @@
                     <div class="card-body" style="background: {{$rintangangames->warna}}">
                     <h2 class="text-capitalize my-3 text-center text-danger">mohon baca persyaratanya ya &#128514;</h2>
                     <hr>
-                    <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
-                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5>
+                    {{-- <h3 class="card-title">Judul : {{$rintangangames->judul}}</h3>
+                    <h5 class="card-text">Level : {{$rintangangames->level}}</h5> --}}
                     <p class="card-text">Created at : {{$rintangangames->created_at}}</p>
                     @if ($rintangangames->required == null)
                     <p class="card-text text-danger text-capitalize">Required : tidak ada persyaratan</p>
@@ -80,7 +80,7 @@
             @if ($aktifbermain > $rintangangames->required)
             <form action="{{url('pemain/kirim/jawaban/coba/lagi')}}" method="POST" name="form" id="form">
                 @csrf
-                <div class="mb-3">
+                <div class="mb-3" style="display:none;">
                     <label for="exampleInputEmail1" class="form-label">Nama Judul</label>
                     <select class="form-select" aria-label="Default select example" name="rintangan_games_id" id="rintangan_games_id">
                         <option value="{{$rintangangames->id}}" selected>{{$rintangangames->judul}}</option>
@@ -105,7 +105,7 @@
             @elseif($aktifbermain == $rintangangames->required)
             <form action="{{url('pemain/kirim/jawaban')}}" method="POST" name="form" id="form">
                 @csrf
-                <div class="mb-3">
+                <div class="mb-3" style="display:none;">
                     <label for="exampleInputEmail1" class="form-label">Nama Judul</label>
                     <select class="form-select" aria-label="Default select example" name="rintangan_games_id" id="rintangan_games_id">
                         <option value="{{$rintangangames->id}}" selected>{{$rintangangames->judul}}</option>
@@ -134,7 +134,7 @@
             @else
             <form action="{{url('pemain/kirim/jawaban')}}" method="POST" name="form" id="form">
                 @csrf
-                <div class="mb-3">
+                <div class="mb-3" style="display:none;">
                     <label for="exampleInputEmail1" class="form-label">Nama Judul</label>
                     <select class="form-select" aria-label="Default select example" name="rintangan_games_id" id="rintangan_games_id" disabled>
                         <option value="{{$rintangangames->id}}" selected>{{$rintangangames->judul}}</option>
