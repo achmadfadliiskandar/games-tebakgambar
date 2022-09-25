@@ -97,8 +97,8 @@
     <thead class="bg-primary">
         <tr>
             <th>No</th>
-            <th>Judul</th>
-            <th>Level</th>
+            {{-- <th>Judul</th>
+            <th>Level</th> --}}
             <th>Waktu</th>
             <th>Pemain</th>
         </tr>
@@ -107,8 +107,8 @@
         @foreach ($playerplay as $playgame)
         <tr>
             <td>{{$loop->iteration}}</td>
-            <td>{{$playgame->rintangangames->judul}}</td>
-            <td>{{$playgame->rintangangames->level}}</td>
+            {{-- <td>{{$playgame->rintangangames->judul}}</td>
+            <td>{{$playgame->rintangangames->level}}</td> --}}
             <td>{{$playgame->waktu_menjawab}}</td>
             <td>{{$playgame->user->name}}</td>
         </tr>
