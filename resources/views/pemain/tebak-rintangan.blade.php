@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="container">
-        <h2 class="text-center text-capitalize">Level {{$levelgames->id}}</h2>
+        <h2 class="text-center text-capitalize">Level - {{$levelgames->level}}</h2>
         <div class="row">
             {{-- pointnya lebih --}}
 
@@ -26,7 +26,7 @@
                             <p class="card-text">Harus Kelar Soal Level 1 Bagian : {{$item->rintangangames->required}}</p>
                             @endif
                             @if ($aktifbermain >= $item->rintangangames->required)
-                            <a href="{{url('pemain/answer/jawab/'.$item->rintangangames->id)}}" class="btn btn-primary">Level : {{$item->rintangangames->id}}</a>
+                            <a href="{{url('pemain/answer/jawab/'.$item->rintangangames->id)}}" class="btn btn-primary">Level : {{$loop->iteration}}</a>
                             @else
                             <button class="btn btn-danger" disabled>
                                 <a href="{{url('pemain/answer/jawab/'.$item->rintangangames->id)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>

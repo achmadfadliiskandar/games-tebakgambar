@@ -56,7 +56,7 @@ class HomeController extends Controller
         if ($request->jawaban == $playgame->rintangangames->jawaban) {
             $playgame->waktu_menjawab = $request->waktu_menjawab;
             $playgame->user_id = 1;
-            return redirect('/')->with('success','Jawaban Anda Benar');
+            return redirect('/login')->with('success','Jawaban Anda Benar');
         }else{
             $playgame->waktu_menjawab = $request->waktu_menjawab;
             $playgame->user_id = 1;

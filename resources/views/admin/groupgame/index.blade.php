@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$kelompokgame->levelgames->level}}</td>
-                        <td>{{$kelompokgame->levelgames->judul}}</td>
+                        <td>{{$kelompokgame->rintangangames->jawaban}}</td>
                         <td>{{$kelompokgame->user->name}}</td>
                         <td>
                             <a href="{{url('admin/groupgame/edit/'.$kelompokgame->id)}}" class="btn btn-success text-capitalize">edit</a>

@@ -19,7 +19,23 @@
                         </div>
                     @endif
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dolorem sapiente illum. Sapiente quibusdam, aperiam nostrum et consequuntur nisi illum incidunt ratione aliquid iure quisquam laboriosam similique eveniet minima eos consectetur molestias aspernatur eum ut? Non maxime sequi vero qui aperiam odio voluptatem, culpa hic veritatis id nostrum, sunt dignissimos. Illo, distinctio sapiente eos, tempore nam laboriosam et voluptatem reiciendis aliquam dolores magnam tenetur quos repellat odio minima, a eligendi in quibusdam! Aperiam, minima sunt.</p>
+                <p>Assalamualaikum wr wb 
+                    cara penggunaan
+                    <br>
+                    1.laptop/pc = silahkan klik menu play now untuk bermain
+                    <br>
+                    2.laptop/pc = jika ingin melihat hasil dari semua pemain silahkan ke menu result
+                    <br>
+                    3.laptop/pc = jika ingin melihat profil kalian silahkan ke menu profile 
+                    <br>
+                    4.mobile/tablet = silahkan klik menu di icon bars click play now untuk bermain
+                    <br>
+                    5.mobile/tablet = jika ingin melihat hasil dari semua pemain silahkan klik menu di icon bars click menu result
+                    <br>
+                    6.mobile/tablet = jika ingin melihat profil kalian silahkan klik menu di icon bars click menu profile 
+                    <br>
+                    <div class="alert alert-info text-capitalize my-2">terima kasih</div>
+                </p>
                     {{-- <p>{{"You Role Is"}} : {{Auth::user()->role}}</p> --}}
                 </div>
             </div>
