@@ -83,12 +83,12 @@ class HomeController extends Controller
     public function start(){
         $rintangangamess = RintanganGame::all();
         $levelgames = LevelGame::all();
-        $data_terakhir = RintanganGame::latest('id')->first();
+        $data_terakhir = DetailLevel::latest('rintangan_games_id')->first();
         if (empty($data_terakhir)) {
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
         return view('pemain.start',compact('rintangangamess','aktifbermain','levelgames'));
         } else {
-        $getdataterakhir = $data_terakhir->required + 1;
+        $getdataterakhir = $data_terakhir->rintangangames->required + 1;
         $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
         return view('pemain.start',compact('rintangangamess','aktifbermain','getdataterakhir','levelgames'));
         }
@@ -522,7 +522,9 @@ class HomeController extends Controller
     }
     public function admingroupgamehapus($id){
         $detaillvlhapus = DetailLevel::find($id);
+        $detailtodelete = PlayGame::where('rintangan_games_id',$detaillvlhapus->rintangan_games_id);
         $detaillvlhapus->delete();
+        $detailtodelete->delete();
         return redirect('/admin/groupgame')->with('success','Kelompok Berhasil Di Hapus');
     }
     // end admin
