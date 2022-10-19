@@ -86,7 +86,7 @@
                         <option value="{{$rintangangames->id}}" selected>{{$rintangangames->judul}}</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" style="display: none;">
                     <label for="waktu" class="form-label">Waktu</label>
                     <input type="text" readonly name="waktu_menjawab" id="waktu" class="form-control @error('waktu_menjawab') is-invalid @enderror" value="{{old('waktu_menjawab')}}">
                     @error('waktu_menjawab')
@@ -111,7 +111,7 @@
                         <option value="{{$rintangangames->id}}" selected>{{$rintangangames->judul}}</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" style="display: none;">
                     <label for="waktu" class="form-label">Waktu</label>
                     <input type="text" readonly name="waktu_menjawab" id="waktu" class="form-control @error('waktu_menjawab') is-invalid @enderror" value="{{old('waktu_menjawab')}}">
                     @error('waktu_menjawab')
@@ -140,7 +140,7 @@
                         <option value="{{$rintangangames->id}}" selected>{{$rintangangames->judul}}</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" style="display: none;">
                     <label for="waktu" class="form-label">Waktu</label>
                     <input type="text" readonly name="waktu_menjawab" id="waktu" class="form-control @error('waktu_menjawab') is-invalid @enderror" value="{{old('waktu_menjawab')}}" disabled>
                     @error('waktu_menjawab')
