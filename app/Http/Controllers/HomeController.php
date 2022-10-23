@@ -113,8 +113,15 @@ class HomeController extends Controller
         if ($rintangangames == null) {
             return abort(404);
         } else {
-        $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
-        return view('pemain.answer',compact('rintangangames','aktifbermain','rintangangamess'));
+        $detailrintangan = DetailLevel::where('rintangan_games_id',$rintangangames->id)->exists();
+        // dd($detailrintangan);
+        if ($detailrintangan == false) {
+            return redirect('/pemain/start')->with('info','maaf levelnya tidak terdaftar ya');
+        } else {
+            $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
+            return view('pemain.answer',compact('rintangangames','aktifbermain','rintangangamess'));
+        }
+        
         }
     }
     public function jawab(Request $request){
