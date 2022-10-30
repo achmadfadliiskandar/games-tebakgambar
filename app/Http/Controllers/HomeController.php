@@ -170,7 +170,7 @@ class HomeController extends Controller
         // return redirect('pemain/get/result')->with('success','Jawaban Anda Benar');
     }
     public function result(){
-        $playgames = PlayGame::with('rintangangames')->get();
+        $playgames = PlayGame::with('rintangangames')->orderBy('waktu_menjawab', 'ASC')->paginate();
         $playgamesfast = PlayGame::min('waktu_menjawab');
         $playgamesslow = PlayGame::max('waktu_menjawab');
         $seluruhpemain = PlayGame::count();
