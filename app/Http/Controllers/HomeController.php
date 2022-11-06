@@ -499,7 +499,7 @@ class HomeController extends Controller
     }
     public function admingroupgamestore(Request $request){
         $request->validate([
-            'rintangan_games_id' => 'required',
+            'rintangan_games_id' => 'required|unique:detail_levels,rintangan_games_id',
             'level_games_id' => 'required',
         ]);
         $detaillevel = new DetailLevel;
