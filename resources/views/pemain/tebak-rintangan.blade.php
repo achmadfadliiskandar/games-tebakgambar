@@ -12,7 +12,7 @@
             {{-- form lebih --}}
 
             {{-- menu --}}
-            @forelse ($levelgames->detailgames as $item)
+            @forelse ($levelgames->detailgames->sortBy("rintangan_games_id") as $item)
 
                 <div class="col-md-4 my-3">
                     <div class="card" style="width: 100%;">
