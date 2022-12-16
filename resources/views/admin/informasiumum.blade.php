@@ -42,6 +42,11 @@
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item">Imsak : {{$datasholat['imsak']}}</li>
                     @if (date("H:i") == $datasholat['subuh'])
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
                     <li class="list-group-item active">Subuh : {{$datasholat['subuh']}}</li>
                     @else
                     <li class="list-group-item">Subuh : {{$datasholat['subuh']}}</li>
@@ -49,21 +54,41 @@
                     <li class="list-group-item">Terbit : {{$datasholat['terbit']}}</li>
                     <li class="list-group-item">Dhuha : {{$datasholat['dhuha']}}</li>
                     @if (date("H:i") == $datasholat['dzuhur'])
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
                     <li class="list-group-item active">Dzuhur : {{$datasholat['dzuhur']}}</li>
                     @else
                     <li class="list-group-item">Dzuhur : {{$datasholat['dzuhur']}}</li>
                     @endif
                     @if (date("H:i" == $datasholat['ashar']))
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
                     <li class="list-group-item active">Ashar : {{$datasholat['ashar']}}</li>
                     @else
                     <li class="list-group-item">Ashar : {{$datasholat['ashar']}}</li>
                     @endif
                     @if (date("H:i") == $datasholat['maghrib'])
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
                     <li class="list-group-item active">Maghrib : {{$datasholat['maghrib']}}</li>
                     @else
                     <li class="list-group-item">Maghrib : {{$datasholat['maghrib']}}</li>
                     @endif
                     @if (date("H:i") == $datasholat['isya'])
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
                     <li class="list-group-item active">Isya : {{$datasholat['isya']}}</li>
                     @else
                     <li class="list-group-item">Isya : {{$datasholat['isya']}}</li>
