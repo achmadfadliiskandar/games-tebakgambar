@@ -238,38 +238,12 @@ class HomeController extends Controller
         foreach ($month as $key => $month) {
             $dataplay[$month] = $playgames[$key];
         }
-        return view('admin.index',compact('users','sarans','rintangangames','playgamesfast','playgamesslow','seluruhpemain','dataplay','playgamescount','playgamess'));
-    }
-    public function admininformasi(){
-        // khusus untuk admin
-
-        // data kopit
-        $response = Http::get('https://data.covid19.go.id/public/api/prov.json');
-        $data = $response->json();
-        // data kopit
-
-        // data jam sholat
+        // year-month-date
         $waktusekarang = date("Y-m-d");
         $jasolat = Http::get('https://api.banghasan.com/sholat/format/json/jadwal/kota/703/tanggal/'.$waktusekarang);
         $datasholat = $jasolat->json()['jadwal']['data'];
         // data jam sholat
-
-        // data badminton
-        $rangkingbadminton = Http::get('https://www.bwfshuttleapi.com/rankings/api/MS');
-        $databadminton = $rangkingbadminton->json();
-        // dd($databadminton);
-        // data badminton
-
-        // waktu sekarang 
-        date_default_timezone_set('Asia/Jakarta');
-
-        // menghitung jumlah user dan saran dan rintangan game
-        $users = User::count();
-        $sarans = Saran::count();
-        $rintangangames = RintanganGame::count();
-        // menghitung jumlah user dan saran dan rintangan game
-
-        return view('admin.informasiumum',compact('data','datasholat','databadminton','users','sarans','rintangangames'));
+        return view('admin.index',compact('users','sarans','rintangangames','playgamesfast','playgamesslow','seluruhpemain','dataplay','playgamescount','playgamess','datasholat'));
     }
     public function adminsaran(){
         $sarans = Saran::all();

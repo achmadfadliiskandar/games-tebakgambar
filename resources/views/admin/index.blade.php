@@ -58,15 +58,78 @@
                             @endif
                         @endforeach
                         </li>
-                        <li class="list-group-item text-capitalize">Waktu Pemain Terlama : 
+                        <li class="list-group-item h-50 text-capitalize">Waktu Pemain Terlama : 
                         @foreach ($playgamess as $item)
                             @if ($item->waktu_menjawab == $playgamesslow)
                                 {{$item->waktu_menjawab}} | {{$item->user->name}}
                             @endif
                         @endforeach
                         </li>
-                        <li class="list-group-item">API Tentang : Covid 19 , BWF , JamSholat</li>
-                        <li class="list-group-item">Jumlah API : 3</li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="card" style="width: 100%;">
+                    <div class="card-header bg-dark text-danger">
+                    Kota Depok : {{ $datasholat['tanggal'] }}
+                    Jam Sekarang :
+                        <span id="jam"></span>:<span id="menit"></span>:<span id="detik"></span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Imsak : {{$datasholat['imsak']}}</li>
+                    @if (date("H:i") == $datasholat['subuh'])
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
+                    <li class="list-group-item active">Subuh : {{$datasholat['subuh']}}</li>
+                    @else
+                    <li class="list-group-item">Subuh : {{$datasholat['subuh']}}</li>
+                    @endif
+                    <li class="list-group-item">Terbit : {{$datasholat['terbit']}}</li>
+                    <li class="list-group-item">Dhuha : {{$datasholat['dhuha']}}</li>
+                    @if (date("H:i") == $datasholat['dzuhur'])
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
+                    <li class="list-group-item active">Dzuhur : {{$datasholat['dzuhur']}}</li>
+                    @else
+                    <li class="list-group-item">Dzuhur : {{$datasholat['dzuhur']}}</li>
+                    @endif
+                    @if (date("H:i" == $datasholat['ashar']))
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
+                    <li class="list-group-item active">Ashar : {{$datasholat['ashar']}}</li>
+                    @else
+                    <li class="list-group-item">Ashar : {{$datasholat['ashar']}}</li>
+                    @endif
+                    @if (date("H:i") == $datasholat['maghrib'])
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
+                    <li class="list-group-item active">Maghrib : {{$datasholat['maghrib']}}</li>
+                    @else
+                    <li class="list-group-item">Maghrib : {{$datasholat['maghrib']}}</li>
+                    @endif
+                    @if (date("H:i") == $datasholat['isya'])
+                    <div class="adzan" style="display: none;">
+                    <audio controls autoplay>
+                    <source src="{{asset('Adzan-imam-Malaysia.mp3')}}" type="audio/mpeg">
+                    </audio>
+                    </div>
+                    <li class="list-group-item active">Isya : {{$datasholat['isya']}}</li>
+                    @else
+                    <li class="list-group-item">Isya : {{$datasholat['isya']}}</li>
+                    @endif
                     </ul>
                 </div>
             </div>
@@ -103,4 +166,14 @@
             }
         });
     })
+</script>
+<script>
+	window.setTimeout(waktu(), 1000);
+	function waktu() {
+		var waktu = new Date();
+		setTimeout("waktu()", 1000);
+		document.getElementById("jam").innerHTML = waktu.getHours();
+		document.getElementById("menit").innerHTML = waktu.getMinutes();
+		document.getElementById("detik").innerHTML = waktu.getSeconds();
+	}
 </script>
