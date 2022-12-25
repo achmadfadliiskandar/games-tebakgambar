@@ -18,6 +18,8 @@
                 <th scope="col">No</th>
                 <th scope="col">Level</th>
                 <th scope="col">Judul</th>
+                <th scope="col">Awal Level</th>
+                <th scope="col">Batas Isi Level</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -27,6 +29,12 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$levelgame->level}}</td>
                 <td>{{$levelgame->judul}}</td>
+                @if ($levelgame->awal_level == null)
+                    <td class="text-danger">tidak memerlukan persyaratan</td>
+                @else
+                <td>{{$levelgame->awal_level}}</td>
+                @endif
+                <td>{{$levelgame->batas}}</td>
                 <td>
                     <a href="{{url('admin/levelgame/detail/'.$levelgame->id)}}" class="btn btn-info text-capitalize">detail</a>
                     <a href="{{url('admin/levelgame/edit/'.$levelgame->id)}}" class="btn btn-success text-capitalize">edit</a>

@@ -401,13 +401,16 @@ class HomeController extends Controller
         $request->validate([
             'judul' => 'required',
             'level' => 'required',
-            // 'rintangan_games_id' => 'required',
+            'batas' => 'required',
+            'awal_level' => 'required'
         ]);
 
         $levelgame = new LevelGame;
         $levelgame->judul = $request->judul;
         $levelgame->level = $request->level;
         $levelgame->user_id = Auth::user()->id;
+        $levelgame->awal_level = $request->awal_level;
+        $levelgame->batas = $request->batas;
         $levelgame->save();
 
         // $detailgame = new DetailLevel;
@@ -430,12 +433,15 @@ class HomeController extends Controller
         $request->validate([
             'judul' => 'required',
             'level' => 'required',
-            // 'rintangan_games_id' => 'required',
+            'batas' => 'required',
+            'awal_level' => 'required'
         ]);
 
         $levelgame = LevelGame::find($id);
         $levelgame->judul = $request->judul;
         $levelgame->level = $request->level;
+        $levelgame->batas = $request->batas;
+        $levelgame->awal_level = $request->awal_level;
         $levelgame->user_id = Auth::user()->id;
         $levelgame->save();
 
@@ -455,10 +461,11 @@ class HomeController extends Controller
     }
     public function adminlevelgamedetail($id){
         $levelgames = LevelGame::with('detailgames')->where('id',$id)->first();
+        $levelgamess = LevelGame::count();
         if ($levelgames == null) {
             return abort(404);
         } else {
-            return view('admin.level.detail',compact('levelgames'));
+            return view('admin.level.detail',compact('levelgames','levelgamess'));
         }
     }
     public function admingroupgame(){

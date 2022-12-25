@@ -23,6 +23,20 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+        <div class="mb-3">
+            <label for="awal_level" class="form-label">Awal Level</label>
+            <input type="number" class="form-control @error('awal_level') is-invalid @enderror" id="awal_level" name="awal_level" value="{{$levelgames->awal_level}}">
+            @error('awal_level')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="batas" class="form-label">Batas</label>
+            <input type="number" class="form-control @error('batas') is-invalid @enderror" id="batas" name="batas" value="{{$levelgames->batas}}">
+            @error('batas')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
         {{-- <div class="mb-3">
             <label for="rintangan_games_id" class="form-label">Rintangan Game</label>
             <select class="form-select form-control @error('rintangan_games_id') is-invalid @enderror" id="rintangan_games_id" name="rintangan_games_id">
