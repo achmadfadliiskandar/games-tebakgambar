@@ -126,7 +126,7 @@ class HomeController extends Controller
     }
     public function tebakanjawaban($id){
         $rintangangames = RintanganGame::find($id);
-        $rintangangamess = RintanganGame::all();
+        $rintangangamess = RintanganGame::inRandomOrder()->get();
         if ($rintangangames == null) {
             return abort(404);
         } else {

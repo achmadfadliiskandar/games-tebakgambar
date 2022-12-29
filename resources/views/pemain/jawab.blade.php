@@ -95,7 +95,13 @@
                 </div>
                 <div class="mb-3">
                     <label for="jawaban" class="form-label">Jawaban</label>
-                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
+                    {{-- <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()"> --}}
+                    <select name="jawaban" id="jawaban" class="form-control">
+                        <option value="silahkan pilih jawabanya">silahkan pilih jawabanya</option>
+                        @foreach ($rintangangamess as $item)
+                            <option value="{{$item->jawaban}}">{{$item->jawaban}}</option>
+                        @endforeach
+                    </select>
                     @error('jawaban')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -120,7 +126,13 @@
                 </div>
                 <div class="mb-3">
                     <label for="jawaban" class="form-label">Jawaban</label>
-                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
+                    {{-- <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()"> --}}
+                    <select name="jawaban" id="jawaban" class="form-control">
+                        <option value="silahkan pilih jawabanya">silahkan pilih jawabanya</option>
+                        @foreach ($rintangangamess as $item)
+                            <option value="{{$item->jawaban}}">{{$item->jawaban}}</option>
+                        @endforeach
+                    </select>
                     @error('jawaban')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -149,7 +161,13 @@
                 </div>
                 <div class="mb-3">
                     <label for="jawaban" class="form-label">Jawaban</label>
-                    <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" disabled oninput="hurufbesarsemua()">
+                    {{-- <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()"> --}}
+                    <select name="jawaban" id="jawaban" class="form-control">
+                        <option value="silahkan pilih jawabanya">silahkan pilih jawabanya</option>
+                        @foreach ($rintangangamess as $item)
+                            <option value="{{$item->jawaban}}">{{$item->jawaban}}</option>
+                        @endforeach
+                    </select>
                     @error('jawaban')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
