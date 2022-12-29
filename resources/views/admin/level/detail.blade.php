@@ -16,6 +16,14 @@
         @empty
         <div class="alert alert-danger">data kosong</div>
         @endforelse
+        {{-- <div class="alert alert-danger mt-3 mb-3">{{$levelgamess}}  | {{$levelgames->batas}}</div> --}}
+        @if ($levelgamess == $levelgames->batas)
+            <p class="text-danger">sudah cukup anda tidak bisa menambahkan konten lagi</p>
+        @elseif($levelgamesss >= $levelgames->batas)
+            <p class="text-warning">tambahkan konten di level selanjutnya</p>
+        @else
+            <p class="text-info">masih ada kesempatan</p>
+        @endif
         <a href="{{url('admin/levelgame')}}" class="btn btn-danger">Back</a>
     </div>
 @endsection

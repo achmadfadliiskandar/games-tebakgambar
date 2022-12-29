@@ -124,6 +124,22 @@ class HomeController extends Controller
         
         }
     }
+    public function tebakanjawaban($id){
+        $rintangangames = RintanganGame::find($id);
+        $rintangangamess = RintanganGame::all();
+        if ($rintangangames == null) {
+            return abort(404);
+        } else {
+        $detailrintangan = DetailLevel::where('rintangan_games_id',$rintangangames->id)->exists();
+        // dd($detailrintangan);
+        if ($detailrintangan == false) {
+            return redirect('/pemain/start')->with('info','maaf levelnya tidak terdaftar ya');
+        } else {
+            $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
+            return view('pemain.jawab',compact('rintangangames','aktifbermain','rintangangamess'));
+        }
+        }
+    }
     public function jawab(Request $request){
         $request->validate([
             'jawaban' => 'required',
@@ -401,7 +417,7 @@ class HomeController extends Controller
         $request->validate([
             'judul' => 'required',
             'level' => 'required',
-            // 'batas' => 'required',
+            'batas' => 'required',
             // 'awal_level' => 'required'
         ]);
 
@@ -410,7 +426,7 @@ class HomeController extends Controller
         $levelgame->level = $request->level;
         $levelgame->user_id = Auth::user()->id;
         // $levelgame->awal_level = $request->awal_level;
-        // $levelgame->batas = $request->batas;
+        $levelgame->batas = $request->batas;
         $levelgame->save();
 
         // $detailgame = new DetailLevel;
@@ -433,14 +449,14 @@ class HomeController extends Controller
         $request->validate([
             'judul' => 'required',
             'level' => 'required',
-            // 'batas' => 'required',
+            'batas' => 'required',
             // 'awal_level' => 'required'
         ]);
 
         $levelgame = LevelGame::find($id);
         $levelgame->judul = $request->judul;
         $levelgame->level = $request->level;
-        // $levelgame->batas = $request->batas;
+        $levelgame->batas = $request->batas;
         // $levelgame->awal_level = $request->awal_level;
         $levelgame->user_id = Auth::user()->id;
         $levelgame->save();
@@ -461,11 +477,12 @@ class HomeController extends Controller
     }
     public function adminlevelgamedetail($id){
         $levelgames = LevelGame::with('detailgames')->where('id',$id)->first();
-        $levelgamess = DetailLevel::count();
+        $levelgamess = $levelgames->detailgames->count();
+        $levelgamesss = DetailLevel::count();
         if ($levelgames == null) {
             return abort(404);
         } else {
-            return view('admin.level.detail',compact('levelgames','levelgamess'));
+            return view('admin.level.detail',compact('levelgames','levelgamess','levelgamesss'));
         }
     }
     public function admingroupgame(){
@@ -476,7 +493,8 @@ class HomeController extends Controller
     public function admingroupgametambah(){
         $rintangangamessss = RintanganGame::all();
         $levelgamesss = LevelGame::all();
-        return view('admin.groupgame.create',compact('rintangangamessss','levelgamesss'));
+        $detailgame = DetailLevel::count();
+        return view('admin.groupgame.create',compact('rintangangamessss','levelgamesss','detailgame'));
     }
     public function admingroupgamestore(Request $request){
         $request->validate([
@@ -486,6 +504,7 @@ class HomeController extends Controller
         $detaillevel = new DetailLevel;
         $detaillevel->rintangan_games_id = $request->rintangan_games_id;
         $detaillevel->level_games_id = $request->level_games_id;
+        $detaillevel->url = $detaillevel->levelgames->url;
         $detaillevel->user_id = Auth::user()->id;
         $detaillevel->save();
         return redirect('/admin/groupgame')->with('success','Kelompok Berhasil Dibuat');
@@ -504,6 +523,7 @@ class HomeController extends Controller
         $detaillevel = DetailLevel::find($id);
         $detaillevel->rintangan_games_id = $request->rintangan_games_id;
         $detaillevel->level_games_id = $request->level_games_id;
+        $detaillevel->url = $detaillevel->levelgames->url;
         $detaillevel->user_id = Auth::user()->id;
         $detaillevel->save();
         return redirect('/admin/groupgame')->with('success','Kelompok Berhasil Di Edit');

@@ -26,10 +26,10 @@
                             <p class="card-text">Harus Kelar Soal Level 1 Bagian : {{$item->rintangangames->required}}</p>
                             @endif
                             @if ($aktifbermain >= $item->rintangangames->required)
-                            <a href="{{url('pemain/answer/jawab/'.$item->rintangangames->id)}}" class="btn btn-primary">Level : {{$loop->iteration}}</a>
+                            <a href="{{url($levelgames->url.$item->rintangangames->id)}}" class="btn btn-primary">Level : {{$loop->iteration}}</a>
                             @else
                             <button class="btn btn-danger" disabled>
-                                <a href="{{url('pemain/answer/jawab/'.$item->rintangangames->id)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
+                                <a href="{{url($levelgames->url.$item->rintangangames->id)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
                             </button>
                             @endif
                         </div>

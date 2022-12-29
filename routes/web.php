@@ -26,6 +26,7 @@ Route::post('/saran/tambah', [App\Http\Controllers\HomeController::class, 'tamba
 Route::get('/pemain/start',[App\Http\Controllers\HomeController::class, 'start'])->middleware('checkRole:pemain');
 Route::get('/pemain/tebak-rintangan/{id}',[App\Http\Controllers\HomeController::class, 'tebak'])->middleware('checkRole:pemain');
 Route::get('/pemain/answer/jawab/{id}',[App\Http\Controllers\HomeController::class, 'tebakjawaban'])->middleware('checkRole:pemain');
+Route::get('/pemain/jawab/jawaban/{id}',[App\Http\Controllers\HomeController::class, 'tebakanjawaban'])->middleware('checkRole:pemain');
 Route::post('/pemain/kirim/jawaban',[App\Http\Controllers\HomeController::class, 'jawab'])->middleware('checkRole:pemain');
 Route::post('/pemain/kirim/jawaban/coba/lagi',[App\Http\Controllers\HomeController::class, 'jawablagi'])->middleware('checkRole:pemain');
 Route::get('/pemain/get/result',[App\Http\Controllers\HomeController::class, 'result'])->middleware('checkRole:pemain');

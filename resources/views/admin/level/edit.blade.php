@@ -23,6 +23,13 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+        <div class="mb-3">
+            <label for="batas" class="form-label">Batas</label>
+            <input type="text" class="form-control @error('batas') is-invalid @enderror" id="batas" name="batas" value="{{$levelgames->batas}}">
+            @error('batas')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
         {{-- <div class="mb-3">
             <label for="rintangan_games_id" class="form-label">Rintangan Game</label>
             <select class="form-select form-control @error('rintangan_games_id') is-invalid @enderror" id="rintangan_games_id" name="rintangan_games_id">

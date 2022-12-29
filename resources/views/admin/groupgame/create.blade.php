@@ -13,7 +13,11 @@
             <select class="form-select form-control @error('level_games_id') is-invalid @enderror" id="level_games_id" name="level_games_id">
                 <option value="">Silahkan Pilih Level</option>
                 @foreach ($levelgamesss as $level)
-                    <option value="{{$level->id}}" {{old('level_games_id') == $level->id ? 'selected':null}}>{{$loop->iteration}} {{$level->level}}</option>
+                    @if ($detailgame == $level->batas)
+                    <option disabled value="{{$level->id}}" {{old('level_games_id') == $level->id ? 'selected':null}}>{{$loop->iteration}} {{$level->level}} ({{$level->batas}})</option>
+                    @else
+                    <option value="{{$level->id}}" {{old('level_games_id') == $level->id ? 'selected':null}}>{{$loop->iteration}} {{$level->level}} ({{$level->batas}})</option>
+                    @endif
                 @endforeach
             </select>
             @error('level_games_id')

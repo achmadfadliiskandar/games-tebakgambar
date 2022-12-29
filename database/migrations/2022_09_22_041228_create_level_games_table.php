@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('level');
             $table->string('judul');
-            // $table->integer('awal_level')->nullable();
-            // $table->integer('batas')->nullable();
+            $table->string('url')->nullable();
+            $table->integer('batas')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

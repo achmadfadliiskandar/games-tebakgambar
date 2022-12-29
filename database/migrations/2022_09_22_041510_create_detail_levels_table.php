@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('level_games_id')->nullable();
             $table->integer('rintangan_games_id')->nullable();
+            $table->string('url')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
