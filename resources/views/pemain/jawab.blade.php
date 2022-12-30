@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('judul','Tebak Rintangan')
+@section('judul','Tebak Rintangan Level')
 
 @section('content')
     <div class="container">
@@ -93,15 +93,21 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <strong>Pilih Jawaban Dibawah Ini :</strong>
+                <div class="border border-primary rounded-3 p-3">
+                    @foreach ($rintangangamess as $item)
+                    <a href="#" class="btn btn-secondary my-2" id="choose" data-id="{{$item->id}}" data-name="{{$item->jawaban}}" onclick="echose(this)">{{$item->jawaban}}</a>
+                    @endforeach
+                </div>
                 <div class="mb-3">
                     <label for="jawaban" class="form-label">Jawaban</label>
-                    {{-- <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()"> --}}
-                    <select name="jawaban" id="jawaban" class="form-control">
+                    <input type="text" readonly name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
+                    {{-- <select name="jawaban" id="jawaban" class="form-control">
                         <option value="silahkan pilih jawabanya">silahkan pilih jawabanya</option>
                         @foreach ($rintangangamess as $item)
                             <option value="{{$item->jawaban}}">{{$item->jawaban}}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
                     @error('jawaban')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -124,15 +130,21 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <strong>Pilih Jawaban Dibawah Ini :</strong>
+                <div class="border border-primary rounded-3 p-3">
+                    @foreach ($rintangangamess as $item)
+                    <a href="#" class="btn btn-secondary my-2" id="choose" data-id="{{$item->id}}" data-name="{{$item->jawaban}}" onclick="echose(this)">{{$item->jawaban}}</a>
+                    @endforeach
+                </div>
                 <div class="mb-3">
                     <label for="jawaban" class="form-label">Jawaban</label>
-                    {{-- <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()"> --}}
-                    <select name="jawaban" id="jawaban" class="form-control">
+                    <input type="text" readonly name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
+                    {{-- <select name="jawaban" id="jawaban" class="form-control">
                         <option value="silahkan pilih jawabanya">silahkan pilih jawabanya</option>
                         @foreach ($rintangangamess as $item)
                             <option value="{{$item->jawaban}}">{{$item->jawaban}}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
                     @error('jawaban')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -159,15 +171,21 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <strong>Pilih Jawaban Dibawah Ini :</strong>
+                <div class="border border-primary rounded-3 p-3">
+                    @foreach ($rintangangamess as $item)
+                    <a href="#" class="btn btn-secondary my-2" id="choose" data-id="{{$item->id}}" data-name="{{$item->jawaban}}" onclick="echose(this)">{{$item->jawaban}}</a>
+                    @endforeach
+                </div>
                 <div class="mb-3">
                     <label for="jawaban" class="form-label">Jawaban</label>
-                    {{-- <input type="text" name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()"> --}}
-                    <select name="jawaban" id="jawaban" class="form-control">
+                    <input type="text" readonly name="jawaban" id="jawaban" class="form-control @error('jawaban') is-invalid @enderror" value="{{old('jawaban')}}" oninput="hurufbesarsemua()">
+                    {{-- <select name="jawaban" id="jawaban" class="form-control">
                         <option value="silahkan pilih jawabanya">silahkan pilih jawabanya</option>
                         @foreach ($rintangangamess as $item)
                             <option value="{{$item->jawaban}}">{{$item->jawaban}}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
                     @error('jawaban')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -184,6 +202,8 @@
         <a href="{{url('/pemain/start')}}" class="btn btn-warning my-3 text-capitalize">back</a>
     </div>
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
     // alert('test harusnya bisa')
     var seconds = {{$rintangangames->waktu}}; // waktu ini hitungan nya dari seconds
@@ -217,5 +237,13 @@
         // alert('testing')
         const huruf = document.getElementById("jawaban");
         huruf.value = huruf.value.toUpperCase();
+    }
+    function echose(ele){
+    event.preventDefault();
+    var name= $(ele).attr('data-name');
+    var id= $(ele).attr('data-id');
+    document.getElementById("jawaban").value = name;
+    // alert(name);  
+    // alert(id); 
     }
 </script>
