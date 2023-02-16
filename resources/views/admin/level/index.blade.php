@@ -18,6 +18,8 @@
                 <th scope="col">No</th>
                 <th scope="col">Level</th>
                 <th scope="col">Judul</th>
+                <th scope="col">Url</th>
+                <th scope="col">Batas</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -27,6 +29,8 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$levelgame->level}}</td>
                 <td>{{$levelgame->judul}}</td>
+                <td>{{$levelgame->url}}</td>
+                <td>{{$levelgame->batas}}</td>
                 <td>
                     <a href="{{url('admin/levelgame/detail/'.$levelgame->id)}}" class="btn btn-info text-capitalize">detail</a>
                     <a href="{{url('admin/levelgame/edit/'.$levelgame->id)}}" class="btn btn-success text-capitalize">edit</a>

@@ -121,7 +121,7 @@ class HomeController extends Controller
             $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
             return view('pemain.answer',compact('rintangangames','aktifbermain','rintangangamess'));
         }
-        
+
         }
     }
     public function tebakanjawaban($id){
@@ -418,6 +418,7 @@ class HomeController extends Controller
             'judul' => 'required',
             'level' => 'required',
             'batas' => 'required',
+            'url' => 'required'
             // 'awal_level' => 'required'
         ]);
 
@@ -425,7 +426,7 @@ class HomeController extends Controller
         $levelgame->judul = $request->judul;
         $levelgame->level = $request->level;
         $levelgame->user_id = Auth::user()->id;
-        // $levelgame->awal_level = $request->awal_level;
+        $levelgame->url = $request->url;
         $levelgame->batas = $request->batas;
         $levelgame->save();
 
@@ -450,13 +451,14 @@ class HomeController extends Controller
             'judul' => 'required',
             'level' => 'required',
             'batas' => 'required',
-            // 'awal_level' => 'required'
+            'url' => 'required'
         ]);
 
         $levelgame = LevelGame::find($id);
         $levelgame->judul = $request->judul;
         $levelgame->level = $request->level;
         $levelgame->batas = $request->batas;
+        $levelgame->url = $request->url;
         // $levelgame->awal_level = $request->awal_level;
         $levelgame->user_id = Auth::user()->id;
         $levelgame->save();
