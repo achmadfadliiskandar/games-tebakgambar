@@ -26,10 +26,13 @@
                             <p class="card-text">Harus Kelar Soal Level 1 Bagian : {{$item->rintangangames->required}}</p>
                             @endif
                             @if ($aktifbermain >= $item->rintangangames->required)
-                            <a href="{{url($levelgames->url.$item->rintangangames->id)}}" class="btn btn-primary">Level : {{$loop->iteration}}</a>
+                            <?php 
+                            $strandom = Str::random(50);
+                            ?>
+                            <a href="{{url($item->url)}}{{$item->rintangan_games_id}}/{{$item->created_at}}/{{$item->updated_at}}/{{random_int(0,999999)}}/{{$strandom}}" class="btn btn-primary">Level : {{$loop->iteration}}</a>
                             @else
                             <button class="btn btn-danger" disabled>
-                                <a href="{{url($levelgames->url.$item->rintangangames->id)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
+                                <a href="{{url($item->url)}}{{$item->rintangan_games_id}}/{{$item->created_at}}/{{$item->updated_at}}/{{random_int(0,999999)}}/{{$strandom}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
                             </button>
                             @endif
                         </div>
