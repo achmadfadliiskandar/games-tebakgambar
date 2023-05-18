@@ -3,7 +3,10 @@
 @section('judul','Tebak Rintangan Level')
 
 @section('content')
-    <div class="container">
+<div class="container">
+    <button onclick="enterFullscreen()" class="btn btn-primary">Go Fullscreen</button>
+    <button onclick="closeFullscreen()" class="btn btn-danger">Close Fullscreen</button>
+    <div class="rowin1" style="display: none;">
         <div class="row">
             {{-- pointnya lebih --}}
             @if ($aktifbermain > $rintangangames->required)
@@ -201,6 +204,7 @@
         </div>
         <a href="{{url('/pemain/start')}}" class="btn btn-warning my-3 text-capitalize">back</a>
     </div>
+    </div>
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -246,4 +250,33 @@
     // alert(name);  
     // alert(id); 
     }
+    function enterFullscreen() {
+            var elem = document.documentElement;
+            var dd = document.getElementsByClassName("rowin1")
+            for (var i = 0; i < dd.length; i++) {
+                dd[i].style.display = 'block';
+            }
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { // IE/Edge
+                elem.msRequestFullscreen();
+            }
+        }
+        function closeFullscreen(){
+            var dd = document.getElementsByClassName("rowin1")
+            for (var i = 0; i < dd.length; i++) {
+                dd[i].style.display = 'none';
+            }
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
 </script>
