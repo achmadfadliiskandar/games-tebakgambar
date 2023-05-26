@@ -107,37 +107,42 @@ class HomeController extends Controller
         return view('pemain.tebak-rintangan',compact('rintangangames','aktifbermain','rintangangamess','levelgames'));
         }
     }
-    public function tebakjawaban($id){
-        $rintangangames = RintanganGame::find($id);
-        $rintangangamess = RintanganGame::all();
-        if ($rintangangames == null) {
+    public function tebakjawaban($created_at){
+        $rintangangames = RintanganGame::where('created_at', $created_at)->first();
+        $rintangangamess = RintanganGame::inRandomOrder()->get();
+        if ($rintangangames) {
+            // $id = $rintanganGame->id;
+            // dd($id);
+            $detailrintangan = DetailLevel::where('rintangan_games_id',$rintangangames->id)->exists();
+            // dd($detailrintangan);
+            if ($detailrintangan == false) {
+                return redirect('/pemain/start')->with('info','maaf levelnya tidak terdaftar ya');
+            } else {
+                $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
+                return view('pemain.answer',compact('rintangangames','aktifbermain','rintangangamess'));
+            }
+        } else {
             return abort(404);
-        } else {
-        $detailrintangan = DetailLevel::where('rintangan_games_id',$rintangangames->id)->exists();
-        // dd($detailrintangan);
-        if ($detailrintangan == false) {
-            return redirect('/pemain/start')->with('info','maaf levelnya tidak terdaftar ya');
-        } else {
-            $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
-            return view('pemain.answer',compact('rintangangames','aktifbermain','rintangangamess'));
-        }
-
+            // dd("Data tidak ditemukan");
         }
     }
-    public function tebakanjawaban($id){
-        $rintangangames = RintanganGame::find($id);
+    public function tebakanjawaban($created_at){
+        $rintangangames = RintanganGame::where('created_at', $created_at)->first();
         $rintangangamess = RintanganGame::inRandomOrder()->get();
-        if ($rintangangames == null) {
+        if ($rintangangames) {
+            // $id = $rintanganGame->id;
+            // dd($id);
+            $detailrintangan = DetailLevel::where('rintangan_games_id',$rintangangames->id)->exists();
+            // dd($detailrintangan);
+            if ($detailrintangan == false) {
+                return redirect('/pemain/start')->with('info','maaf levelnya tidak terdaftar ya');
+            } else {
+                $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
+                return view('pemain.jawab',compact('rintangangames','aktifbermain','rintangangamess'));
+            }
+        } else {
             return abort(404);
-        } else {
-        $detailrintangan = DetailLevel::where('rintangan_games_id',$rintangangames->id)->exists();
-        // dd($detailrintangan);
-        if ($detailrintangan == false) {
-            return redirect('/pemain/start')->with('info','maaf levelnya tidak terdaftar ya');
-        } else {
-            $aktifbermain = PlayGame::where('user_id',Auth::user()->id)->count();
-            return view('pemain.jawab',compact('rintangangames','aktifbermain','rintangangamess'));
-        }
+            // dd("Data tidak ditemukan");
         }
     }
     public function jawab(Request $request){

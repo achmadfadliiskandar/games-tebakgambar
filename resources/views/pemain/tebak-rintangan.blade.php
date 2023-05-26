@@ -29,12 +29,13 @@
                             <?php 
                             $strandom = Str::random(50);
                             ?>
-                            <a href="{{url($item->url .  $item->rintangan_games_id . '/' . $item->created_at . '/' . $item->updated_at . '/' . random_int(0, 999999) . '/' . $strandom)}}" class="btn btn-primary">Level: {{$loop->iteration}}</a>
+                            <a href="{{url($item->url .  $item->rintangangames->created_at)}}" class="btn btn-primary">Level: {{$loop->iteration}}</a>
                             @else
                             <button class="btn btn-danger" disabled>
-                                <a href="{{url($item->url .  $item->rintangan_games_id . '/' . $item->created_at . '/' . $item->updated_at . '/' . random_int(0, 999999) . '/' . $strandom)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
+                                <a href="{{url($item->url .  $item->rintangangames->created_at)}}" class="text-white" style="text-decoration: none;">Maaf Poin Belum Mencukupi</a>
                             </button>                            
                             @endif
+                            {{-- {{$item->rintangangames->created_at}} --}}
                         </div>
                     </div>
                 </div>
